@@ -1,49 +1,39 @@
 package com.leetcode.solution;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FindSubstring {
     public static void main(String[] args) {
-        System.out.println(new FindSubstring().findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", new String[]{"fooo", "barr", "wing", "ding", "wing"}));
+//        System.out.println(new FindSubstring().findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", new String[]{"fooo", "barr", "wing", "ding", "wing"}));
+//        System.out.println(new FindSubstring().findSubstring("barfoothefoobarman", new String[]{"foo", "bar"}));
+        System.out.println(new FindSubstring().findSubstring("barfoofoobarthefoobarman", new String[]{"bar", "foo", "the"}));
     }
 
     public List<Integer> findSubstring(String s, String[] words) {
-        int targetLength = words.length;
-        int wordLength = words[1].length();
-        List<String> splitList = new ArrayList<>();
-        Matcher matcher = Pattern.compile("\\w{" + wordLength + "}").matcher(s);
-        while (matcher.find()) {
-            splitList.add(matcher.group());
-        }
-        int splitListLength = splitList.size();
-        if (targetLength > splitListLength) {
-            return Collections.emptyList();
-        }
-        if (targetLength == splitListLength && isEqual(splitList, words)) {
-            return Collections.singletonList(0);
-        }
+        int wordLength = words[0].length();
+        int windowLength = wordLength * words.length;
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i <= splitListLength - targetLength; i++) {
-            List<String> source = new ArrayList<>(splitList).subList(i, i + targetLength);
-            if (isEqual(source, words)) {
-                result.add(i * wordLength);
+
+        for (int i = 0; i <= s.length() - windowLength; i++) {
+            String str = s.substring(i, i + windowLength);
+            List<String> targetList = new ArrayList<>(Arrays.asList(words));
+            boolean isEqual = true;
+            for (int j = 0; j <= str.length() - wordLength; ) {
+                String word = str.substring(j, j + wordLength);
+                if (targetList.contains(word)) {
+                    targetList.remove(word);
+                } else {
+                    isEqual = false;
+                    break;
+                }
+                j += wordLength;
+            }
+            if (isEqual) {
+                result.add(i);
             }
         }
         return result;
-    }
-
-    public boolean isEqual(List<String> source, String[] target) {
-        for (String targetStr : target) {
-            if (source.contains(targetStr)) {
-                source.remove(targetStr);
-            } else {
-                return false;
-            }
-        }
-        return true;
     }
 }
