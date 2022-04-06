@@ -3,10 +3,30 @@ package com.leetcode.solution;
 /**
  * https://leetcode-cn.com/problems/search-insert-position/
  * 35. 搜索插入位置
+ * => 在一个有序数组中找第一个大于等于 target 的下标
  */
 public class SearchInsert {
     public static void main(String[] args) {
         System.out.println(new SearchInsert().searchInsert(new int[]{1, 3}, 2));
+    }
+
+
+    public int searchInsertOptimize(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        // 退出条件 left > right => left = right + 1
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            // [left ... mid - 1, mid, mid + 1, ... right]
+            if (target <= nums[mid]) {
+                // [left ... mid - 1]
+                right = mid - 1;
+            } else {
+                // [mid + 1, ... right]
+                left = mid + 1;
+            }
+        }
+        return left;
     }
 
     public int searchInsert(int[] nums, int target) {
