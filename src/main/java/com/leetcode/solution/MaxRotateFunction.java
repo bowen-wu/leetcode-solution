@@ -1,5 +1,7 @@
 package com.leetcode.solution;
 
+import java.util.Arrays;
+
 /**
  * https://leetcode-cn.com/problems/rotate-function/
  * 396. 旋转函数
@@ -12,20 +14,16 @@ public class MaxRotateFunction {
     // 时间复杂度：O(n * n)
     // 空间复杂度：O(n)
     public int maxRotateFunction(int[] nums) {
-        int result = Integer.MIN_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            result = Math.max(result, rotateF(nums, i));
-        }
-        return result;
-    }
-
-    public int rotateF(int[] nums, int rotateNumber) {
-        int result = 0;
         int length = nums.length;
+        int[] resultArr = new int[length];
         for (int i = 0; i < length; i++) {
-            int coefficient = (i + rotateNumber >= length) ? (i + rotateNumber - length) : (i + rotateNumber);
-            result += (coefficient * nums[i]);
+            for (int j = 0; j < length; j++) {
+                // [F(0), F(1), F(2), F(3)]
+                int coefficient = (i + j >= length) ? (i + j - length) : (i + j);
+                resultArr[j] += coefficient * nums[i];
+            }
         }
-        return result;
+        Arrays.sort(resultArr);
+        return resultArr[length - 1];
     }
 }
