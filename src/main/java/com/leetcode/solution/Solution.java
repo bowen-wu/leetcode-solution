@@ -1,9 +1,7 @@
 package com.leetcode.solution;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://leetcode-cn.com/problems/random-pick-index/
@@ -17,27 +15,22 @@ public class Solution {
     }
 
     // 时间复杂度：O(n)
-    // 空间复杂度：O(n)
-    private final Map<Integer, List<Integer>> indexValueMap = new HashMap<>();
+    // 空间复杂度：O(1)
+    private final int[] nums;
 
     public Solution(int[] nums) {
-        // 时间复杂度：O(n)
-        for (int i = 0; i < nums.length; i++) {
-            if (indexValueMap.get(nums[i]) == null) {
-                // 没有
-                List<Integer> list = new ArrayList<>();
-                list.add(i);
-                indexValueMap.put(nums[i], list);
-            } else {
-                indexValueMap.get(nums[i]).add(i);
-            }
-        }
+        this.nums = nums;
     }
 
     public int pick(int target) {
-        // 时间复杂度：O(1)
-        List<Integer> targetList = indexValueMap.get(target);
-        int randomIndex = (int) (Math.random() * targetList.size());
-        return targetList.get(randomIndex);
+        List<Integer> targetIndexList = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                targetIndexList.add(i);
+            }
+        }
+
+        int randomIndex = (int) (Math.random() * targetIndexList.size());
+        return targetIndexList.get(randomIndex);
     }
 }
