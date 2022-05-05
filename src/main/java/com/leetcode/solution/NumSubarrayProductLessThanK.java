@@ -6,7 +6,7 @@ package com.leetcode.solution;
  */
 public class NumSubarrayProductLessThanK {
     public static void main(String[] args) {
-        System.out.println(new NumSubarrayProductLessThanK().numSubarrayProductLessThanK(new int[]{1, 4, 2, 4, 10, 5, 2, 6}, 100));
+        System.out.println(new NumSubarrayProductLessThanK().numSubarrayProductLessThanK1(new int[]{1, 4, 2, 4, 10, 5, 2, 6}, 1));
     }
 
     // 时间复杂度：O(n)
@@ -31,6 +31,19 @@ public class NumSubarrayProductLessThanK {
                 leftIndex = -1;
                 accumulate = 1;
             }
+        }
+        return result;
+    }
+
+    public int numSubarrayProductLessThanK1(int[] nums, int k) {
+        if (k <= 1) return 0;
+        int result = 0;
+        for (int i = 0, leftIndex = 0, accumulate = 1; i < nums.length; i++) {
+            accumulate *= nums[i];
+            while (accumulate >= k) {
+                accumulate = accumulate / nums[leftIndex++];
+            }
+            result += (i - leftIndex + 1);
         }
         return result;
     }
