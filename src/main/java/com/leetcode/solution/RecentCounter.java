@@ -8,7 +8,7 @@ import java.util.List;
  * 933. 最近的请求次数
  */
 public class RecentCounter {
-    private List<Integer> pingTimeList;
+    private final List<Integer> pingTimeList;
 
     public static void main(String[] args) {
         RecentCounter recentCounter = new RecentCounter();
@@ -29,21 +29,7 @@ public class RecentCounter {
     // 空间复杂度：O(1)
     public int ping(int t) {
         pingTimeList.add(t);
-        int pingTimes = pingTimeList.size();
-        int prevLeft = pingTimeList.get(pingTimes - 1) - 3000;
-        int subStartIndex = 0;
-
-        for (int i = 0; i < pingTimeList.size(); i++) {
-            if (pingTimeList.get(i) >= prevLeft) {
-                subStartIndex = i;
-                break;
-            }
-        }
-
-        if (subStartIndex > 0) {
-            pingTimeList = pingTimeList.subList(subStartIndex, pingTimes);
-        }
-
+        pingTimeList.removeIf(timestamp -> timestamp < pingTimeList.get(pingTimeList.size() - 1) - 3000);
         return pingTimeList.size();
     }
 }
