@@ -1,9 +1,7 @@
 package com.leetcode.solution;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/
@@ -15,17 +13,26 @@ public class FindDuplicates {
     }
 
     // 时间复杂度：O(n)
-    // 空间复杂度：O(n)
+    // 空间复杂度：O(1)
+    // 原地哈希
+    // 4,3,2,2,3,1  => ans []
+    // 4,3,2,-2,3,1  => ans []
+    // 4,3,-2,-2,3,1  => ans []
+    // 4,-3,-2,-2,3,1  => ans []
+    // 4,-3,-2,-2,3,1  => ans [2]
+    // 4,-3,-2,-2,3,1  => ans [2, 3]
+    // -4,-3,-2,-2,3,1  => ans [2, 3]
     public List<Integer> findDuplicates(int[] nums) {
         List<Integer> result = new ArrayList<>();
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int current : nums) {
-            if (map.get(current) == null) {
-                map.put(current, 1);
+        for (int i = 0; i < nums.length; i++) {
+            int valueAbs = Math.abs(nums[i]);
+            if (nums[valueAbs - 1] > 0) {
+                nums[valueAbs - 1] = -nums[valueAbs - 1];
             } else {
-                result.add(current);
+                result.add(valueAbs);
             }
         }
+
         return result;
     }
 }
