@@ -19,10 +19,9 @@ public class Codec {
         twoOne.right = threeTwo;
         TreeNode twoTwo = new TreeNode(10);
         twoTwo.right = threeThree;
-        TreeNode root = new TreeNode(0);
-//        root.left = twoOne;
-//        root.right = twoTwo;
-
+        TreeNode root = new TreeNode(8);
+        root.left = twoOne;
+        root.right = twoTwo;
 
         Codec ser = new Codec();
         Codec deser = new Codec();
@@ -82,60 +81,71 @@ public class Codec {
         if (data.isEmpty()) {
             return null;
         }
-        TreeNode result = new TreeNode(getNumber(data));
-        String substring = data.substring(0, data.indexOf("#"));
-        int leftPosition = substring.contains("L") ? 1 : -1;
-        int rightPosition = substring.contains("R") ? (leftPosition == -1 ? 1 : 2) : -1;
-        recursion(result, data.substring(data.indexOf("#") + 1), leftPosition, rightPosition);
+        StringBuilder numberBuilder = new StringBuilder();
+        int nextStrIndex = 0;
+        int leftPosition = -1;
+        int rightPosition = -1;
+
+        for (int i = 0; i < data.length(); i++) {
+            char currentChar = data.charAt(i);
+            if (currentChar >= 48 && currentChar <= 57) {
+                // 数字
+                numberBuilder.append(currentChar);
+            }
+            if (currentChar == 35) { // #
+                nextStrIndex = i + 1;
+                break;
+            }
+            if (currentChar == 76) { // L
+                leftPosition = 1;
+            }
+            if (currentChar == 82) { // R
+                rightPosition = leftPosition != -1 ? 2 : 1;
+            }
+        }
+
+        TreeNode result = new TreeNode(Integer.parseInt(numberBuilder.toString()));
+        recursion(result, data, nextStrIndex, leftPosition, rightPosition);
         return result;
     }
 
-    private TreeNode recursion(TreeNode root, String data, int leftPosition, int rightPosition) {
+    private TreeNode recursion(TreeNode root, String data, int dataStartIndex, int leftPosition, int rightPosition) {
         int currentPosition = 0;
         int nextLayerPosition = 0;
-        StringBuilder stringBuilder = new StringBuilder();
-        int poundIndex = data.indexOf("#");
-        String nextLayerString = data.substring(poundIndex + 1);
+        int childLeftPosition = -1;
+        int childRightPosition = -1;
+        StringBuilder numberBuilder = new StringBuilder();
+        int poundIndex = data.substring(dataStartIndex).indexOf("#");
 
-        for (int i = 0; i <= poundIndex; i++) {
+        for (int i = dataStartIndex; i < data.length(); i++) {
             char currentChar = data.charAt(i);
-            if (currentChar == ',' || currentChar == '#') {
-                String currentString = stringBuilder.toString();
+            if (currentChar >= 48 && currentChar <= 57) {
+                // 数字
+                numberBuilder.append(currentChar);
+            } else if (currentChar == 76) { // L
+                childLeftPosition = ++nextLayerPosition;
+            } else if (currentChar == 82) { // R
+                childRightPosition = ++nextLayerPosition;
+            } else if (currentChar == 44 || currentChar == 35) { // , #
                 currentPosition++;
-                TreeNode child = new TreeNode(getNumber(currentString));
-                int childLeftPosition = -1;
-                int childRightPosition = -1;
-                if (currentString.contains("L")) {
-                    childLeftPosition = ++nextLayerPosition;
-                }
-                if (currentString.contains("R")) {
-                    childRightPosition = ++nextLayerPosition;
-                }
+                TreeNode child = new TreeNode(Integer.parseInt(numberBuilder.toString()));
                 if (currentPosition == leftPosition) {
-                    root.left = recursion(child, nextLayerString, childLeftPosition, childRightPosition);
+                    root.left = recursion(child, data, poundIndex + dataStartIndex + 1, childLeftPosition, childRightPosition);
                 }
                 if (currentPosition == rightPosition) {
-                    root.right = recursion(child, nextLayerString, childLeftPosition, childRightPosition);
+                    root.right = recursion(child, data, poundIndex + dataStartIndex + 1, childLeftPosition, childRightPosition);
                 }
-                stringBuilder = new StringBuilder();
-            } else {
-                stringBuilder.append(currentChar);
+
+                childLeftPosition = -1;
+                childRightPosition = -1;
+                numberBuilder = new StringBuilder();
+
+                if (currentChar == 35) {
+                    break;
+                }
             }
         }
         return root;
-    }
-
-    private int getNumber(String string) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
-            if (currentChar == 'L' || currentChar == 'R' || currentChar == '#') {
-                break;
-            } else {
-                result.append(currentChar);
-            }
-        }
-        return Integer.parseInt(result.toString());
     }
 }
 
