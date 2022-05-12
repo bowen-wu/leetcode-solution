@@ -1,5 +1,6 @@
 package com.leetcode.solution;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,8 +67,16 @@ public class Codec {
     private TreeNode getTreeNodeFromList(List<Integer> data) {
         int rootVal = data.get(0);
         TreeNode root = new TreeNode(rootVal);
-        List<Integer> leftList = data.stream().filter(item -> item < rootVal).collect(Collectors.toList());
-        List<Integer> rightList = data.stream().filter(item -> item > rootVal).collect(Collectors.toList());
+        List<Integer> leftList = new ArrayList<>();
+        List<Integer> rightList = new ArrayList<>();
+        for (int i = 1; i < data.size(); i++) {
+            int currentVal = data.get(i);
+            if (currentVal < rootVal) {
+                leftList.add(currentVal);
+            } else {
+                rightList.add(currentVal);
+            }
+        }
         if (leftList.size() > 0) {
             root.left = getTreeNodeFromList(leftList);
         }
