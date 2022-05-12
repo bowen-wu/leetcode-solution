@@ -1,7 +1,8 @@
 package com.leetcode.solution;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * https://leetcode.cn/problems/serialize-and-deserialize-bst/
@@ -25,54 +26,31 @@ public class Codec {
 
         Codec ser = new Codec();
         Codec deser = new Codec();
-        String tree = ser.serialize(root); // 8LR#3LR,10R#1,6LR,14#4,7#
+        String tree = ser.serialize(root);
+        System.out.println(tree);
         TreeNode ans = deser.deserialize(tree);
         System.out.println(ans);
     }
 
-    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         if (root == null) {
             return "";
         }
-        // BFS
-        // 层之间使用 # 区分
-        // 同一层的使用 , 区分
-        // 如果有 left 则添加 L
-        // 如果有 right 则添加 R
+        // DFS => 前序遍历 => 根节点 -> 左节点 -> 右节点
+        // 数字之间使用 , 分隔
+        return getValFromTreeNode(root);
+    }
+
+    private String getValFromTreeNode(TreeNode root) {
         StringBuilder result = new StringBuilder();
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        int currentLayerNumber = 1;
-        int nextLayerNumber = 0;
-
-        while (queue.size() > 0) {
-            TreeNode remove = queue.remove();
-            result.append(remove.val);
-
-            if (remove.left != null) {
-                queue.add(remove.left);
-                nextLayerNumber++;
-                result.append("L");
-            }
-
-            if (remove.right != null) {
-                queue.add(remove.right);
-                nextLayerNumber++;
-                result.append("R");
-            }
-
-            currentLayerNumber--;
-            if (currentLayerNumber == 0) {
-                result.append('#');
-                currentLayerNumber = nextLayerNumber;
-                nextLayerNumber = 0;
-            } else {
-                result.append(',');
-            }
-
+        result.append(root.val);
+        result.append(",");
+        if (root.left != null) {
+            result.append(getValFromTreeNode(root.left));
         }
-
+        if (root.right != null) {
+            result.append(getValFromTreeNode(root.right));
+        }
         return result.toString();
     }
 
@@ -81,69 +59,20 @@ public class Codec {
         if (data.isEmpty()) {
             return null;
         }
-        StringBuilder numberBuilder = new StringBuilder();
-        int nextStrIndex = 0;
-        int leftPosition = -1;
-        int rightPosition = -1;
-
-        for (int i = 0; i < data.length(); i++) {
-            char currentChar = data.charAt(i);
-            if (currentChar >= 48 && currentChar <= 57) {
-                // 数字
-                numberBuilder.append(currentChar);
-            }
-            if (currentChar == 35) { // #
-                nextStrIndex = i + 1;
-                break;
-            }
-            if (currentChar == 76) { // L
-                leftPosition = 1;
-            }
-            if (currentChar == 82) { // R
-                rightPosition = leftPosition != -1 ? 2 : 1;
-            }
-        }
-
-        TreeNode result = new TreeNode(Integer.parseInt(numberBuilder.toString()));
-        recursion(result, data, nextStrIndex, leftPosition, rightPosition);
-        return result;
+        List<Integer> list = Arrays.stream(data.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+        return getTreeNodeFromList(list);
     }
 
-    private TreeNode recursion(TreeNode root, String data, int dataStartIndex, int leftPosition, int rightPosition) {
-        int currentPosition = 0;
-        int nextLayerPosition = 0;
-        int childLeftPosition = -1;
-        int childRightPosition = -1;
-        StringBuilder numberBuilder = new StringBuilder();
-        int poundIndex = data.substring(dataStartIndex).indexOf("#");
-
-        for (int i = dataStartIndex; i < data.length(); i++) {
-            char currentChar = data.charAt(i);
-            if (currentChar >= 48 && currentChar <= 57) {
-                // 数字
-                numberBuilder.append(currentChar);
-            } else if (currentChar == 76) { // L
-                childLeftPosition = ++nextLayerPosition;
-            } else if (currentChar == 82) { // R
-                childRightPosition = ++nextLayerPosition;
-            } else if (currentChar == 44 || currentChar == 35) { // , #
-                currentPosition++;
-                TreeNode child = new TreeNode(Integer.parseInt(numberBuilder.toString()));
-                if (currentPosition == leftPosition) {
-                    root.left = recursion(child, data, poundIndex + dataStartIndex + 1, childLeftPosition, childRightPosition);
-                }
-                if (currentPosition == rightPosition) {
-                    root.right = recursion(child, data, poundIndex + dataStartIndex + 1, childLeftPosition, childRightPosition);
-                }
-
-                childLeftPosition = -1;
-                childRightPosition = -1;
-                numberBuilder = new StringBuilder();
-
-                if (currentChar == 35) {
-                    break;
-                }
-            }
+    private TreeNode getTreeNodeFromList(List<Integer> data) {
+        int rootVal = data.get(0);
+        TreeNode root = new TreeNode(rootVal);
+        List<Integer> leftList = data.stream().filter(item -> item < rootVal).collect(Collectors.toList());
+        List<Integer> rightList = data.stream().filter(item -> item > rootVal).collect(Collectors.toList());
+        if (leftList.size() > 0) {
+            root.left = getTreeNodeFromList(leftList);
+        }
+        if (rightList.size() > 0) {
+            root.right = getTreeNodeFromList(rightList);
         }
         return root;
     }
