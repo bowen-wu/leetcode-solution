@@ -1,7 +1,6 @@
 package com.leetcode.solution;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 /**
  * https://leetcode.cn/problems/successor-lcci/
@@ -24,53 +23,31 @@ public class InorderSuccessor {
         root.right = twoTwo;
 
         TreeNode recursion = new InorderSuccessor().inorderSuccessor(root, twoOne);
-
         System.out.println(recursion);
     }
 
-    // 时间复杂度：O(n + n + n)
-    // 空间复杂度：O(1)
+    // 时间复杂度：O(n)
+    // 空间复杂度：O(n)
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        List<Integer> recursion = recursion(root);
-        Integer targetVal = null;
-        for (int i = 0; i < recursion.size(); i++) {
-            if (recursion.get(i) == p.val && i + 1 < recursion.size()) {
-                targetVal = recursion.get(i + 1);
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        TreeNode prev = null;
+        while (node != null || !stack.isEmpty()) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            // 当前节点为 null
+            if (!stack.isEmpty()) {
+                TreeNode pop = stack.pop();
+                if (prev != null && prev.val == p.val) {
+                    return pop;
+                }
+                prev = pop;
+                node = pop.right;
             }
         }
-        if (targetVal == null) {
-            return null;
-        }
-        return get(root, targetVal);
-    }
-
-    private TreeNode get(TreeNode root, int target) {
-        TreeNode result = null;
-        if (root.left != null) {
-            result = get(root.left, target);
-            if (result != null) {
-                return result;
-            }
-        }
-        if (root.val == target) {
-            return root;
-        }
-        if (root.right != null) {
-            result = get(root.right, target);
-        }
-        return result;
-    }
-
-    private List<Integer> recursion(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        if (root.left != null) {
-            result.addAll(recursion(root.left));
-        }
-        result.add(root.val);
-        if (root.right != null) {
-            result.addAll(recursion(root.right));
-        }
-        return result;
+        return null;
     }
 }
 
