@@ -1,51 +1,62 @@
 package com.leetcode.solution;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 /**
  * https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/
  * 668. 乘法表中第k小的数
  */
 public class FindKthNumber {
     public static void main(String[] args) {
-        System.out.println(new FindKthNumber().findKthNumber(2, 3, 6));
+        System.out.println(new FindKthNumber().findKthNumber(3, 3, 5));
+//        System.out.println(new FindKthNumber().findKthNumber(9895, 28405, 100787757));
+//        System.out.println(new FindKthNumber().findKthNumber(14095, 1517, 8568032));
     }
 
-    // 暴力解法 => 找到所有的值，之后排序
-    // 时间复杂度：O(m * n) + O(m * n)
-    // 空间复杂度：O(m * n) + O(m * n)
+    // 时间复杂度：O(m * n)
+    // 空间复杂度：
     public int findKthNumber(int m, int n, int k) {
-        List<Integer> numberList = new ArrayList<>();
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                numberList.add(i * j);
+        if (k == 1) {
+            return 1;
+        }
+        if (k == m * n) {
+            return m * n;
+        }
+
+        int number = 0;
+        int result = -1;
+        if (m * n / 2 > k) {
+            for (int i = 1; i <= m * n; i++) {
+                int iNumber = getNumber(i, m, n);
+                if (number + iNumber >= k) {
+                    result = i;
+                    break;
+                }
+                number += iNumber;
+            }
+        } else {
+            for (int i = m * n; i > 0; i--) {
+                int iNumber = getNumber(i, m, n);
+                if (number + iNumber > m * n - k) {
+                    result = i;
+                    break;
+                }
+                number += iNumber;
             }
         }
-        List<Integer> sortedNumberList = quickSort(numberList);
-        return sortedNumberList.get(k - 1);
+
+        return result;
     }
 
-    // 分治法(Divide and conquer)需要O(n)的额外空间
-    public List<Integer> quickSort(List<Integer> list) {
-        if (list.size() <= 1) {
-            return list;
-        }
-
-        List<Integer> left = new ArrayList<>(), pivot = new ArrayList<>(), right = new ArrayList<>();
-        Integer pivotValue = list.get(0);
-        for (Integer element : list) {
-            if (element < pivotValue) {
-                left.add(element);
-            } else if (element.equals(pivotValue)) {
-                pivot.add(element);
-            } else {
-                right.add(element);
+    private int getNumber(int currentNumber, int m, int n) {
+        int number = 0;
+        int minRow = (currentNumber - 1) / n + 1;
+        int maxRow = Math.min(currentNumber, m);
+        for (int i = minRow; i <= maxRow; i++) {
+            int minColumn = (currentNumber - 1) / i + 1;
+            int maxColumn = Math.min(currentNumber / i, n);
+            for (int j = minColumn; j <= maxColumn; j++) {
+                number++;
             }
         }
-        return Stream.of(quickSort(left), pivot, quickSort(right)).flatMap(Collection::stream).collect(Collectors.toList());
+        return number;
     }
 }
