@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * 449. 序列化和反序列化二叉搜索树
  */
 public class Codec {
-    public static void main(String[] args) {
+    public static TreeNode getTreeNode() {
         TreeNode threeOne = new TreeNode(1);
         TreeNode threeTwo = new TreeNode(6);
         threeTwo.left = new TreeNode(4);
@@ -24,10 +24,13 @@ public class Codec {
         TreeNode root = new TreeNode(8);
         root.left = twoOne;
         root.right = twoTwo;
+        return root;
+    }
 
+    public static void main(String[] args) {
         Codec ser = new Codec();
         Codec deser = new Codec();
-        String tree = ser.serialize(root);
+        String tree = ser.serialize(getTreeNode());
         System.out.println(tree);
         TreeNode ans = deser.deserialize(tree);
         System.out.println(ans);
