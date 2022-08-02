@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class TwoSum {
 
-    public int[] twoSumForBruteForce(int[] nums, int target) {
+    public static int[] twoSumForBruteForce(int[] nums, int target) {
         // 时间复杂度：O(n ^ 2)
         // 空间复杂度：O(1)
         if (nums.length <= 1) {
@@ -32,35 +32,29 @@ public class TwoSum {
         return new int[2];
     }
 
-    public int[] twoSum(int[] nums, int target) {
+    public static int[] twoSum(int[] nums, int target) {
         // 1. 排序 => O(nlogn)
         // 2. 双指针 => O(n)
         // 时间复杂度：O(nlogn)
         // 空间复杂度：O(1)
-        if (nums.length <= 1) {
-            return new int[2];
-        }
-
         Arrays.sort(nums);
         int left = 0;
         int right = nums.length - 1;
 
-        if (nums[left] > target) {
-            return new int[2];
-        }
-
         while (left < right) {
-            if (nums[left] + nums[right] < target) {
-                left++;
-            } else if (nums[left] + nums[right] == target) {
+            if (nums[left] + nums[right] == target) {
                 if (nums[left] < nums[right]) {
                     return new int[]{nums[left] + nums[right]};
                 }
                 return new int[]{nums[right] + nums[left]};
-            } else {
+            }
+            if (nums[left] + nums[right] < target) {
+                left++;
+            }
+            if (nums[left] + nums[right] > target) {
                 right--;
             }
         }
-        return new int[2];
+        return null;
     }
 }
