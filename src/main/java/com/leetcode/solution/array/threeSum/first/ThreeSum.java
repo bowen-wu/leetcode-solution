@@ -1,16 +1,11 @@
 package com.leetcode.solution.array.threeSum.first;
 
+import com.leetcode.solution.array.threeSum.ThreeSumTemplate;
+
 import java.util.Arrays;
 
-/**
- * 给定一个包含n个整数的数组（无重复元素）nums和一个目标值target，找出数组中和为目标值的三个数
- * 可以假设每个输入只对应一种答案
- * 例如,
- * 给定数组 nums = [-1, 0, 1, 2, -4]，target = 0
- * 满足要求的三元组集合为： [-1, 0, 1]
- */
-public class ThreeSum {
-    public static int[] threeSumBruteForce(int[] nums, int target) {
+public class ThreeSum extends ThreeSumTemplate {
+    public int[] threeSumBruteForce(int[] nums, int target) {
         // 暴力
         // 时间复杂度：O(n ^ 3)
         // 空间复杂度：O(1)
@@ -30,7 +25,7 @@ public class ThreeSum {
         return new int[3];
     }
 
-    public static int[] threeSum(int[] nums, int target) {
+    public int[] threeSum(int[] nums, int target) {
         // 1. 排序：O(nlogn)
         // 2. for loop + 双指针 => O(n^2)
         // threeSum 转化为 twoSum

@@ -1,10 +1,8 @@
 package com.leetcode.solution.array.reverseString.first;
 
-/**
- * https://leetcode.cn/problems/reverse-string/
- * 344. 反转字符串
- */
-public class ReverseString {
+import com.leetcode.solution.array.reverseString.ReverseStringTemplate;
+
+public class ReverseString extends ReverseStringTemplate {
     public void reverseString(char[] s) {
         // 时间复杂度：O(n)
         // 空间复杂度：O(n)

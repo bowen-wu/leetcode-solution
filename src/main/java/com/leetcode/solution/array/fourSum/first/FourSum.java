@@ -1,23 +1,22 @@
 package com.leetcode.solution.array.fourSum.first;
 
+import com.leetcode.solution.array.fourSum.FourSumTemplate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * https://leetcode.cn/problems/4sum/
- * 18. 四数之和
- */
-public class FourSum {
+
+public class FourSum extends FourSumTemplate {
     public static void main(String[] args) {
 //        System.out.println(fourSum(new int[]{2, 2, 2, 2, 2}, 8));
-        System.out.println(fourSum(new int[]{1, -2, -5, -4, -3, 3, 3, 5}, -11));
-        System.out.println(fourSum(new int[]{1000000000, 1000000000, 1000000000, 1000000000}, -294967296));
+//        System.out.println(fourSum(new int[]{1, -2, -5, -4, -3, 3, 3, 5}, -11));
+//        System.out.println(fourSum(new int[]{1000000000, 1000000000, 1000000000, 1000000000}, -294967296));
 //        System.out.println(fourSum(new int[]{-2, -1, -1, 1, 1, 2, 2}, 0));
     }
 
-    public static List<List<Integer>> fourSum(int[] nums, int target) {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
         // 排序 => O(nlogn)
         // for loop + for loop + while => O(n^3)
         // 时间复杂度：O(n^3)

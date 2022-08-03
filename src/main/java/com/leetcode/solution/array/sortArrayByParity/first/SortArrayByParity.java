@@ -1,12 +1,10 @@
 package com.leetcode.solution.array.sortArrayByParity.first;
 
+import com.leetcode.solution.array.sortArrayByParity.SortArrayByParityTemplate;
+
 import java.util.Arrays;
 
-/**
- * https://leetcode.cn/problems/sort-array-by-parity/
- * 905. 按奇偶排序数组
- */
-public class SortArrayByParity {
+public class SortArrayByParity extends SortArrayByParityTemplate {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(new SortArrayByParity().sortArrayByParity(new int[]{3, 2, 1, 4})));
     }
