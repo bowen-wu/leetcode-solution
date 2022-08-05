@@ -47,7 +47,7 @@ public class ThreeSum extends ThreeSumTemplate {
                 if (first + nums[left] + nums[right] > target) {
                     right--;
                 }
-                if (first + nums[left] + nums[right] == target) {
+                if (first + nums[left] + nums[right] < target) {
                     left++;
                 }
             }
