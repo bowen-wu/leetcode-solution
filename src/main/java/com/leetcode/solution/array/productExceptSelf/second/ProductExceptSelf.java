@@ -1,3 +1,7 @@
+package com.leetcode.solution.array.productExceptSelf.second;
+
+import com.leetcode.solution.array.productExceptSelf.ProductExceptSelfTemplate;
+
 public class ProductExceptSelf extends ProductExceptSelfTemplate {
     // 问题1：什么类型数组 => 整数数组
     // 问题2：是否有重复元素 => 有

@@ -4,7 +4,7 @@
 
 ### 思路
 
-思路：使用两个栈模拟队列
+使用两个栈模拟队列
 
 - offer => stack1.push
 - isEmpty => stack1.isEmpty() && stack2.isEmpty()

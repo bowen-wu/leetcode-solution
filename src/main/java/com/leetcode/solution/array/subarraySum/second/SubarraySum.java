@@ -1,3 +1,7 @@
+package com.leetcode.solution.array.subarraySum.second;
+
+import com.leetcode.solution.array.subarraySum.SubarraySumTemplate;
+
 public class SubarraySum extends SubarraySumTemplate {
     // 问题1：什么类型的数组 => 整数数组
     // 问题2：是否有重复元素 => 有
@@ -10,7 +14,7 @@ public class SubarraySum extends SubarraySumTemplate {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        
+
         // 思路1 Brute Fore：两层 for loop，时间复杂度O(n^2)，空间复杂度：O(1)
         // 优化 => DUP => Duplicate => 第二层的累加重复了
         // 思路2：数组前缀和
