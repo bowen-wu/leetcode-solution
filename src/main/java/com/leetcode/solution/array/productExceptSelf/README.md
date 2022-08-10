@@ -44,3 +44,50 @@ class Solution {
 |---------|----------------|----------------|------------------------|
 | 22      | for (int i = 0 | for (int i = 1 | 初始位置没有界定清楚，边界问题        |
 | 23 - 24 | -              | -              | 没有想清楚，应该带入特殊值，之后从特殊到一般 |
+
+### 优化空间
+
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(n)
+        // 优化空间 => 
+        //   1. result 代替 leftPrefixMultiple
+        //   2. factor 代替 rightPrefixMultiple
+        // 第i个结果 answer[i] == answer[i] * factor
+        // nums   =>  1  2  3  4
+        // answer =>  1  1  2  6
+        // factor = 1
+        // i = 3
+        // answer =>  1  1  2  6*1
+        // factor = 1 * 4 = 4
+        // i = 2 
+        // answer =>  1  1  2*4 6
+        // factor = 4 * 3 = 12
+        // i = 1
+        // answer =>  1 1*12 8  6
+        // factor = 12 * 2 = 24
+        // i = 0
+        // answer =>  24 12 8  6
+        if (nums == null || nums.length == 0) {
+            return new int[0];
+        }
+
+        int[] answer = new int[nums.length];
+        answer[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            answer[i] = answer[i - 1] * nums[i - 1];
+        }
+
+        int factor = 1;
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            answer[i] = answer[i] * factor;
+            factor *= nums[i];
+        }
+
+        return answer;
+    }
+}
+```

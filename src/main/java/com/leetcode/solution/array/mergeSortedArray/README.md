@@ -83,3 +83,41 @@ class Solution {
 | 问题行数 | 错误点                          | 正确写法                              | 错误原因                    |
 |------|------------------------------|-----------------------------------|-------------------------|
 | 24   | resultIndex < Math.min(m, n) | firstPoint < m && secondPoint < n | 边界条件判断错误，边界条件要举例，从特殊到一般 |
+
+## 第三遍总结
+
+```java
+public class Third {
+    public int[] merge(int[] nums1, int[] nums2) {
+        // 思路
+        // 双指针 => firstPointer + secondPointer，初始值为0，比较两者，较小的放入 result 中，之后移动较小的指针，继续比较。O(m + n)
+        if (nums1 == null || nums1.length == 0) {
+            return nums2;
+        }
+        if (nums2 == null || nums2.length == 0) {
+            return nums1;
+        }
+
+        int[] result = new int[nums1.length + nums2.length];
+        int first = 0;
+        int second = 0;
+        for (int i = 0; i < result.length; i++) {
+            if (nums1[first] > nums2[second]) {
+                result[i] = nums2[second];
+                second++;
+            } else {
+                result[i] = nums1[first];
+                first++;
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+上述方案会出界。case：[1, 3], [2, 4, 5, 6] => first = 2，nums1[first] => ArrayIndexOutOfBoundsException
+
+1. 使用 while 循环，判断条件为 first < nums1.length && second < nums2.length
+2. 将剩余部分放入 result 中 
+

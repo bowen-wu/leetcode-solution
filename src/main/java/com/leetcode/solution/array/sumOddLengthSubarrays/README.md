@@ -44,3 +44,8 @@ class Solution {
 |------|--------------------------|---------------------------|------------|
 | 29   | prefix[start]            | prefixSum[start]          | 笔误         |
 | 27   | start + len < arr.length | start + len <= arr.length | 边界条件没有考虑清楚 |
+| 9    | arr.length = 0           | arr.length == 0           | 笔误         |
+| 22   | prefix[i]                | prefixSum[i]              | 笔误         |
+| 22   | nums[i]                  | arr[i]                    | 笔误         |
+| 27   | len <= arr.length        | start + len <= arr.length | **边界条件**   |
+
