@@ -23,4 +23,8 @@ package com.leetcode.solution.binarySearch.firstBadVersion;
  */
 abstract public class FirstBadVersionTemplate {
     abstract public int firstBadVersion(int n);
+
+    public boolean isBadVersion(int num) {
+        return false;
+    }
 }

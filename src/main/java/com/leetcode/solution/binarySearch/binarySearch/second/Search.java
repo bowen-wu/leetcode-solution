@@ -1,20 +1,9 @@
-## 二分查找
+package com.leetcode.solution.binarySearch.binarySearch.second;
 
-<https://leetcode.cn/problems/binary-search/>
+import com.leetcode.solution.binarySearch.binarySearch.SearchTemplate;
 
-### 思路
-
-二分搜索
-
-### 总结
-
-| 问题行数 | 错误点     | 正确写法        | 错误原因  |
-|------|---------|-------------|-------|
-| 12   | start++ | start = mid | 还需要练习 |
-| 14   | end++   | end = mid   | 还需要练习 |
-
-```java
-class Solution {
+public class Search extends SearchTemplate {
+    @Override
     public int search(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return -1;
@@ -42,4 +31,3 @@ class Solution {
         return -1;
     }
 }
-```

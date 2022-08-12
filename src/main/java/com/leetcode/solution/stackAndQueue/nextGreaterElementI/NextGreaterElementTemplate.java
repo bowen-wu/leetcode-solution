@@ -8,6 +8,7 @@ package com.leetcode.solution.stackAndQueue.nextGreaterElementI;
  * 对于每个 0 <= i < nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。
  * 如果不存在下一个更大元素，那么本次查询的答案是 -1 。
  * 返回一个长度为nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。
+ * 时间复杂度和空间复杂度 O(n)
  * <p>
  * 示例 1：
  * 输入：nums1 = [4,1,2], nums2 = [1,3,4,2].

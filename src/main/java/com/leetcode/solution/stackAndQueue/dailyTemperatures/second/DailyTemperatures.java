@@ -1,30 +1,15 @@
-## 每日温度
+package com.leetcode.solution.stackAndQueue.dailyTemperatures.second;
 
-<https://leetcode.cn/problems/daily-temperatures/>
+import com.leetcode.solution.stackAndQueue.dailyTemperatures.DailyTemperaturesTemplate;
 
-### 思路
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-使用单调栈
-
-- **右侧** => 从左向右遍历
-- **Greater** => 栈底到栈顶单调递减
-
-#### 优化
-
-1. 进行参数判断
-
-### 总结
-
-| 问题行数 | 错误点                                        | 正确写法                       | 错误原因        |
-|------|--------------------------------------------|----------------------------|-------------|
-| 13   | temperatures[stack.peek()] temperatures[i] | -                          | 判断条件忘记写了，大意 |
-| 15   | temperatures[index] = i - index;           | result[index] = i - index; | 笔误          |
-
-```java
-class Solution {
+public class DailyTemperatures extends DailyTemperaturesTemplate {
     // 思路：
     // 1. Brute Force：双层 for loop，时间复杂度O(n^2)
     // 2. 单调栈 => 栈底到栈顶单调递减栈，当入栈比栈顶元素大时，破坏单调性，此时记录两者 index 差值即可。O(n) + O(n)
+    @Override
     public int[] dailyTemperatures(int[] temperatures) {
         if (temperatures == null || temperatures.length == 0) {
             return null;
@@ -43,4 +28,3 @@ class Solution {
         return result;
     }
 }
-```

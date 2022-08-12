@@ -1,48 +1,12 @@
-## 用栈实现队列
+package com.leetcode.solution.stackAndQueue.implementQueueUsingStacks.second;
 
-<https://leetcode.cn/problems/implement-queue-using-stacks/>
+import com.leetcode.solution.stackAndQueue.implementQueueUsingStacks.MyQueueTemplate;
 
-### 思路
+import java.util.Deque;
+import java.util.LinkedList;
 
-使用两个栈模拟队列
-
-- offer => stack1.push
-- isEmpty => stack1.isEmpty() && stack2.isEmpty()
-- poll
-    1. stack2 isEmpty => stack1 -> stack2, stack2.pop()
-    2. stack2 noEmpty => stack2.pop()
-- peek
-    1. stack2 isEmpty => stack1 -> stack2, stack2.peek()
-    2. stack2 noEmpty => stack2.peek()
-
-#### 优化
-
-优化 peek 最坏时间复杂度 => 添加 stack1BottomValue 变量
-
-- peek
-    1. stack1 isEmpty => 记录 stack1BottomValue
-    2. stack2 isEmpty => 返回 stack1BottomValue
-    3. stack2 noEmpty => 返回 stack2.peek()
-
-### pop 时间复杂度分析
-
-- 最好时间复杂度 => O(1)
-- 最坏时间复杂度 => O(n)
-
-平均时间复杂度分析：对于每一个元素，最多有四个操作
-
-1. s1入栈
-2. s1出栈
-3. s2入栈
-4. s2出栈
-
-故对于每一个元素，**平均时间复杂度是 O(1)**
-
-### 总结
-
-```java
-class MyQueue {
-    // 思路：使用两个栈模拟队列 => 两次 FILO == FIFO    
+public class MyQueue extends MyQueueTemplate {
+    // 思路：使用两个栈模拟队列 => 两次 FILO == FIFO
     // push => stack1.push() => O(1)
     // pop =>
     //      stack2.isEmpty() == true => stack1 -> stack2, stack2.pop()
@@ -60,6 +24,7 @@ class MyQueue {
         this.stack1BottomValue = null;
     }
 
+    @Override
     public void push(int x) {
         // 时间复杂度：O(1)
         if (stack1.isEmpty()) {
@@ -68,6 +33,7 @@ class MyQueue {
         stack1.push(x);
     }
 
+    @Override
     public int pop() {
         // 时间复杂度：O(1)
         if (stack2.isEmpty()) {
@@ -78,18 +44,15 @@ class MyQueue {
         return stack2.pop();
     }
 
+    @Override
     public int peek() {
         // 时间复杂度：O(1)
         return stack2.isEmpty() ? stack1BottomValue : stack2.peek();
     }
 
+    @Override
     public boolean empty() {
         // 时间复杂度：O(1)
         return stack1.isEmpty() && stack2.isEmpty();
     }
 }
-```
-
-| 问题行数   | 错误点        | 正确写法        | 错误原因   |
-|--------|------------|-------------|--------|
-| 25, 32 | 使用 add API | 使用 push API | API 不熟 |

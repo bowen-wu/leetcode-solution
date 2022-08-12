@@ -61,5 +61,88 @@ class Solution {
 1. 结果初始值应为第一个元素值
 2. 第一层循环可以到最后一个
 
+### 总结
+
+| 问题行数 | 错误点                | 正确写法 | 错误原因                        |
+|------|--------------------|------|-----------------------------|
+| 31   | heights.length - 1 | -    | 最后 pop 时右边界是 heights.length |
+
+```java
+class Solution {
+    // 思路：找到每个元素的向左延伸和向右延伸的最大值，如果比当前元素大，那么可以延伸，如果比当前元素小，那么停止延伸，此时固定了宽度 = right - left，高度为当前元素的高
+    // 1. Brute Force => 两层 for loop
+    // 2. 使用栈底到栈顶单调递增栈。pop 时计算面积 area = popValue * (currentIndex - stack.peekIndex - 1) O(n) + O(n)
+    //                          stack 非空继续 pop => area = popValue * (length - stack.peekIndex - 1)
+    // 							        栈底元素 => area = popValue * length
+    // 3. 使用两次单调栈。分别确定左右两个边界，从而计算面积
+    // 			       从左向右使用栈底到栈顶单调递增栈 => 确定右边界，默认值 length
+    // 					从右向左使用栈底到栈顶单调递增栈 => 确定左边界，默认值 -1	
+    // 4. 使用一次单调栈。push 的时候就能知道 left 边界 => left = stack.isEmpty() ? -1 : stack.peek()
+    public int largestRectangleArea(int[] heights) {
+        // pop 时计算面积
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+
+        int result = Integer.MIN_VALUE;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < heights.length; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
+                int index = stack.pop();
+                int leftLimit = stack.isEmpty() ? -1 : stack.peek();
+                result = Math.max(result, heights[index] * (i - leftLimit - 1));
+            }
+            stack.push(i);
+        }
+
+        while (!stack.isEmpty()) {
+            int index = stack.pop();
+            int leftLimit = stack.isEmpty() ? -1 : stack.peek();
+            result = Math.max(result, heights[index] * (heights.length - leftLimit - 1));
+        }
+
+        return result;
+    }
+}
+```
+
+```java
+class Solution {
+    // 思路：找到每个元素的向左延伸和向右延伸的最大值，如果比当前元素大，那么可以延伸，如果比当前元素小，那么停止延伸，此时固定了宽度 = right - left，高度为当前元素的高
+    // 1. Brute Force => 两层 for loop
+    // 2. 使用栈底到栈顶单调递增栈。pop 时计算面积 area = popValue * (currentIndex - stack.peekIndex - 1) O(n) + O(n)
+    //                          stack 非空继续 pop => area = popValue * (length - stack.peekIndex - 1)
+    // 							        栈底元素 => area = popValue * length
+    // 3. 使用两次单调栈。分别确定左右两个边界，从而计算面积
+    // 			       从左向右使用栈底到栈顶单调递增栈 => 确定右边界，默认值 length
+    // 					从右向左使用栈底到栈顶单调递增栈 => 确定左边界，默认值 -1	
+    // 4. 使用一次单调栈。push 的时候就能知道 left 边界 => left = stack.isEmpty() ? -1 : stack.peek()
+    public int largestRectangleArea(int[] heights) {
+        // 4. 使用一次单调栈。push 的时候就能知道 left 边界
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+
+        int[] left = new int[heights.length];
+        int[] right = new int[heights.length];
+        Arrays.fill(right, heights.length);
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < heights.length; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
+                right[stack.pop()] = i;
+            }
+            left[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(i);
+        }
+
+        int result = Integer.MIN_VALUE;
+        for (int i = 0; i < heights.length; i++) {
+            result = Math.max(result, heights[i] * (right[i] - left[i] - 1));
+        }
+        return result;
+    }
+}
+```
+
 
 
