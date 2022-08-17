@@ -26,4 +26,41 @@
 
 **start++ 之后，有可能落入同一个单调递增区间内 => 要在 while 循环中判断是否无旋转**
 
-   
+### 总结
+
+| 问题行数 | 错误点                    | 正确写法 | 错误原因                           |
+|------|------------------------|------|--------------------------------|
+| 21   | nums[mid] <= nums[end] | -    | 如果出现相等的情况，不能判断是移动 start 还是 end |
+
+```java
+class Solution {
+    public int findMin(int[] nums) {
+        // 思路：start < end => 未旋转
+        // 		start > end => 旋转
+        // 			start < mid => start = mid
+        //			mid < end => end = mid
+        //			相等的情况 => start++ => 需要查看 start 是否移到了下部
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
+        int start = 0;
+        int end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[start] < nums[end]) {
+                return nums[start];
+            }
+            if (nums[start] < nums[mid]) {
+                start = mid;
+            } else if (nums[mid] < nums[end]) {
+                end = mid;
+            } else {
+                start++;
+            }
+        }
+
+        return Math.min(nums[start], nums[end]);
+    }
+}
+```

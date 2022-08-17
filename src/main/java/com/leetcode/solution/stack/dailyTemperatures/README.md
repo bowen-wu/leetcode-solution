@@ -15,10 +15,11 @@
 
 ### 总结
 
-| 问题行数 | 错误点                                        | 正确写法                       | 错误原因        |
-|------|--------------------------------------------|----------------------------|-------------|
-| 13   | temperatures[stack.peek()] temperatures[i] | -                          | 判断条件忘记写了，大意 |
-| 15   | temperatures[index] = i - index;           | result[index] = i - index; | 笔误          |
+| 问题行数 | 错误点                                          | 正确写法                       | 错误原因        |
+|------|----------------------------------------------|----------------------------|-------------|
+| 13   | temperatures[stack.peek()] temperatures[i]   | -                          | 判断条件忘记写了，大意 |
+| 15   | temperatures[index] = i - index;             | result[index] = i - index; | 笔误          |
+| 15   | temperatures[stack.pop()] = temperatures[i]; | -                          | 审题          |
 
 ```java
 class Solution {

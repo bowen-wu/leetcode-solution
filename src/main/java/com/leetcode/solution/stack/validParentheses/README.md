@@ -25,6 +25,13 @@
 
 ### 总结
 
+| 问题行数 | 错误点       | 正确写法       | 错误原因                      |
+|------|-----------|------------|---------------------------|
+| 6    | Charger   | Character  | 不会写 Character Character   |
+| 7    | s.length  | s.length() | String API，length 是方法不是属性 |
+| 7    | s.size()  | s.length() | String API，length()       |
+| 6    | Charecter | Character  | 不会写 Character Character   |
+
 ```java
 class Solution {
     // 思路：使用栈进行模拟，遇到左括号入栈，遇到右括号和栈顶左括号匹配
@@ -51,9 +58,3 @@ class Solution {
     }
 }
 ```
-
-| 问题行数 | 错误点      | 正确写法       | 错误原因                      |
-|------|----------|------------|---------------------------|
-| 6    | Charger  | Character  | 不会写 Character Character   |
-| 7    | s.length | s.length() | String API，length 是方法不是属性 |
-
