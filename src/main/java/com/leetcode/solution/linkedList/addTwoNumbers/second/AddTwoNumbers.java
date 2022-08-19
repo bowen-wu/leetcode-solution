@@ -1,26 +1,10 @@
-## 两数相加
+package com.leetcode.solution.linkedList.addTwoNumbers.second;
 
-<https://leetcode.cn/problems/add-two-numbers/>
+import com.leetcode.solution.linkedList.ListNode;
+import com.leetcode.solution.linkedList.addTwoNumbers.AddTwoNumbersTemplate;
 
-### 思路
-
-双指针
-
-#### 优化
-
-1. 剩余的值中，可能还有进位，不能直接改变指针，还有看进位
-2. 全部遍历结束，还要看是否有进位
-
-### 总结
-
-| 问题行数    | 错误点                 | 正确写法    | 错误原因             |
-|---------|---------------------|---------|------------------|
-| 18      | nums2               | num2    | 大意               |
-| 19      | int carry =         | carry = | 外部已经定义了 carry。大意 |
-| 21 & 24 | 未判断是否是 null，就 .next | -       | **细节**           |
-
-```java
-class Solution {
+public class AddTwoNumbers extends AddTwoNumbersTemplate {
+    @Override
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         // 思路：两根指针一起走，记录 carry + Dummy Node O(n) + O(1)
         if (l1 == null) {
@@ -57,4 +41,3 @@ class Solution {
         return dummyNode.next;
     }
 }
-```

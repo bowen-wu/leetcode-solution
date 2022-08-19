@@ -1,19 +1,10 @@
-## 环形链表
+package com.leetcode.solution.linkedList.linkedListCycle.second;
 
-<https://leetcode.cn/problems/linked-list-cycle/>
+import com.leetcode.solution.linkedList.ListNode;
+import com.leetcode.solution.linkedList.linkedListCycle.HasCycleTemplate;
 
-### 思路
-
-快慢指针 => 如果快慢指针相遇，则成环
-
-### 总结
-
-| 问题行数    | 错误点 | 正确写法 | 错误原因                                       |
-|---------|-----|------|--------------------------------------------|
-| 13 - 15 | -   | -    | 要先移动之后判等，最初 fast == head，slow == head，二者相等 |
-
-```java
-public class Solution {
+public class HasCycle extends HasCycleTemplate {
+    @Override
     public boolean hasCycle(ListNode head) {
         // 思路：快慢指针 => 相遇了则成环 O(n) + O(1)
         if (head == null) {
@@ -33,4 +24,3 @@ public class Solution {
         return false;
     }
 }
-```
