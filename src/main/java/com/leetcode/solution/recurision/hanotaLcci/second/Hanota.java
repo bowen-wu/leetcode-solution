@@ -1,20 +1,13 @@
-## 汉诺塔问题
+package com.leetcode.solution.recurision.hanotaLcci.second;
 
-<https://leetcode.cn/problems/hanota-lcci/>
+import com.leetcode.solution.recurision.hanotaLcci.HanotaTemplate;
 
-### 思路
+import java.util.List;
 
-### 总结
-
-| 问题行数    | 错误点                          | 正确写法                                         | 错误原因               |
-|---------|------------------------------|----------------------------------------------|--------------------|
-| 15 & 19 | target.push(origin.remove()) | target.add(origin.remove(origin.size() - 1)) | API 不熟，没有 IDEA 的帮助 |
-| 4       | A.size == 0                  | A.size() == 0                                | API 不熟，没有 IDEA 的帮助 |
-
-```java
-class Solution {
+public class Hanota extends HanotaTemplate {
+    @Override
     public void hanota(List<Integer> A, List<Integer> B, List<Integer> C) {
-        // 思路：如果只有一个 A -> C 
+        // 思路：如果只有一个 A -> C
         if (A.size() == 0) {
             return;
         }
@@ -34,4 +27,3 @@ class Solution {
         hanotaRecursion(n - 1, buffer, target, origin);
     }
 }
-```

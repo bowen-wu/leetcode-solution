@@ -1,20 +1,18 @@
-## 斐波那契数列
+package com.leetcode.solution.recurision.fibonacci.second;
 
-<https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/>
+import com.leetcode.solution.recurision.fibonacci.FibTemplate;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-### 总结
-
-1. 答案要取余
-
-```java
-// 使用 map 做 cache
-class Solution {
+public class Fib extends FibTemplate {
     private Map<Integer, Integer> cache = new HashMap<>();
 
-    public int fib(int n) {
+    public int fibWithCache(int n) {
         // 思路：使用 map 进行缓存
+        if (n < 0) {
+            throw new IllegalArgumentException("The n is invalid!");
+        }
         if (n == 0 || n == 1) {
             return n;
         }
@@ -26,16 +24,8 @@ class Solution {
         cache.put(n, result);
         return result;
     }
-}
-```
 
-1. 数组长度为 n + 1
-2. 取余
-
-```java
-// 使用数组缓存
-class Solution {
-    public int fib(int n) {
+    public int fibWithArray(int n) {
         // 思路：滚动数组
         if (n < 0) {
             throw new IllegalArgumentException("The n is invalid");
@@ -51,12 +41,8 @@ class Solution {
         }
         return result[n];
     }
-}
-```
 
-```java
-// 滚动数组 => 空间复杂度降低
-class Solution {
+    @Override
     public int fib(int n) {
         // 思路：滚动数组
         if (n < 0) {
@@ -67,7 +53,7 @@ class Solution {
         }
         int result0 = 0;
         int result1 = 1;
-        int answer = 0;
+        int answer;
         for (int i = 2; i <= n; i++) {
             answer = (result0 + result1) % 1000000007;
             result0 = result1;
@@ -76,4 +62,3 @@ class Solution {
         return result1;
     }
 }
-```
