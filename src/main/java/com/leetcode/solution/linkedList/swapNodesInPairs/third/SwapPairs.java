@@ -1,23 +1,10 @@
-## 两两交换链表中的节点
+package com.leetcode.solution.linkedList.swapNodesInPairs.third;
 
-<https://leetcode.cn/problems/swap-nodes-in-pairs/>
+import com.leetcode.solution.linkedList.ListNode;
+import com.leetcode.solution.linkedList.swapNodesInPairs.SwapPairsTemplate;
 
-### 思路
-
-1. 链表结构发生改变 => 头节点改变 => Dummy Node
-2. 遍历
-    1. 够不够两个
-    2. 翻转
-    3. 移动指针
-
-### 总结
-
-| 问题行数    | 错误点         | 正确写法                  | 错误原因                                      |
-|---------|-------------|-----------------------|-------------------------------------------|
-| 13 & 24 | return head | return dummyNode.next | 使用 Dummy Node 一定要返回 Dummy Node 的 next。不熟练 |
-
-```java
-class Solution {
+public class SwapPairs extends SwapPairsTemplate {
+    @Override
     public ListNode swapPairs(ListNode head) {
         // 思路：检查够不够两个，够交换 1 次。头节点发生改变 => Dummy Node
         if (head == null) {
@@ -43,4 +30,3 @@ class Solution {
         return dummyNode.next;
     }
 }
-```

@@ -17,9 +17,10 @@
     2. 使用 for 循环 reverse k - 1 次
     3. 移动指针
 
-| 问题行数 | 错误点     | 正确写法     | 错误原因 |
-|------|---------|----------|------|
-| 15   | LitNode | ListNode | 大意   |
+| 问题行数 | 错误点                    | 正确写法                   | 错误原因 |
+|------|------------------------|------------------------|------|
+| 15   | LitNode                | ListNode               | 大意   |
+| 22   | return dummuNode.next; | return dummyNode.next; | 大意   |
 
 ```java
 class Solution {
