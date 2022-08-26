@@ -1,22 +1,11 @@
-## 二叉树的最小深度
+package com.leetcode.solution.depthFirstSearch.minimumDepthOfBinaryTree.second;
 
-<https://leetcode.cn/problems/minimum-depth-of-binary-tree/>
+import com.leetcode.solution.depthFirstSearch.TreeNode;
+import com.leetcode.solution.depthFirstSearch.minimumDepthOfBinaryTree.MinDepthTemplate;
 
-### 思路
-
-1. 分支法 => 考虑如果左子树没有，那高度就以右子树为准
-2. 遍历法 => 叶子节点的时候才会更新 depth
-
-### 总结
-
-| 问题行数    | 错误点   | 正确写法   | 错误原因 |
-|---------|-------|--------|------|
-| 13      | reurn | return | 大意   |
-| 38 & 39 | help  | helper | 大意   |
-
-```java
-class Solution {
-    public int minDepth(TreeNode root) {
+public class MinDepth extends MinDepthTemplate {
+    @Override
+    public int minDepthDivideAndConquer(TreeNode root) {
         // 思路：分支法 or 遍历法
         if (root == null) {
             return 0;
@@ -32,7 +21,8 @@ class Solution {
 
     private int depth;
 
-    public int minDepthTraversal(TreeNode root) {
+    @Override
+    public int minDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -56,4 +46,3 @@ class Solution {
         helper(root.right, currentDepth + 1);
     }
 }
-```

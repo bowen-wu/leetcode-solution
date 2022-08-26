@@ -1,25 +1,10 @@
-## 翻转二叉树
+package com.leetcode.solution.depthFirstSearch.invertBinaryTree.second;
 
-<https://leetcode.cn/problems/invert-binary-tree/>
+import com.leetcode.solution.depthFirstSearch.TreeNode;
+import com.leetcode.solution.depthFirstSearch.invertBinaryTree.InvertTreeTemplate;
 
-### 思路
-
-1. 分治法
-2. 遍历法 => doSomething(node) => 一次翻转
-    ```
-    public <T> void dfs(TreeNode<T> node) {
-        doSomething(node);
-        dfs(node.left);
-        dfs(node.right);
-    }
-    ```
-
-### 总结
-
-1. doSomething(node) => 一次翻转
-
-```java
-class Solution {
+public class InvertTree extends InvertTreeTemplate {
+    @Override
     public TreeNode invertTreeDivideAndConquer(TreeNode root) {
         // 思路：分治法 or 遍历法
         if (root == null) {
@@ -31,6 +16,7 @@ class Solution {
         return root;
     }
 
+    @Override
     public TreeNode invertTree(TreeNode root) {
         // 思路：遍历法
         if (root == null) {
@@ -53,4 +39,3 @@ class Solution {
         helper(root.right);
     }
 }
-```

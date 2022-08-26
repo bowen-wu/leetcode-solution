@@ -1,24 +1,10 @@
-## 对称二叉树
+package com.leetcode.solution.depthFirstSearch.symmetricTree.second;
 
-<https://leetcode.cn/problems/symmetric-tree/>
+import com.leetcode.solution.depthFirstSearch.TreeNode;
+import com.leetcode.solution.depthFirstSearch.symmetricTree.IsSymmetricTemplate;
 
-### 思路
-
-1. 分治法 => 左右两颗子树对称不能推出树对称，所以不能使用分治法
-2. 遍历法 => 何时更新全局变量 => 不对称的时候
-
-#### 优化
-
-1. 可以不使用全局变量，helper 函数带有返回值 boolean
-
-### 总结
-
-| 问题行数 | 错误点        | 正确写法        | 错误原因 |
-|------|------------|-------------|------|
-| 20   | right.righ | right.right | 大意   |
-
-```java
-class Solution {
+public class IsSymmetric extends IsSymmetricTemplate {
+    @Override
     public boolean isSymmetric(TreeNode root) {
         // 思路：分治法 => 轴对称 => 左与右对称，继续深入比较
         if (root == null) {
@@ -40,4 +26,3 @@ class Solution {
         return helper(left.left, right.right) && helper(left.right, right.left);
     }
 }
-```

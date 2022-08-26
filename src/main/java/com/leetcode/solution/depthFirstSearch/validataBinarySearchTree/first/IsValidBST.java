@@ -13,18 +13,6 @@ public class IsValidBST extends IsValidBSTTemplate {
         return divideAndConquer(root).isBST;
     }
 
-    private boolean helper(TreeNode root, int min, int max) {
-        if (root == null) {
-            return true;
-        }
-
-        if (min >= root.val || root.val >= max) {
-            return false;
-        }
-
-        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
-    }
-
     private Result divideAndConquer(TreeNode root) {
         if (root == null) {
             return new Result(true, Integer.MAX_VALUE, Integer.MIN_VALUE);
