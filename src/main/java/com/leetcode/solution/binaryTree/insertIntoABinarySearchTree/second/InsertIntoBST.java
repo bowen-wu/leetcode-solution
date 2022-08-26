@@ -1,19 +1,10 @@
-## 二叉搜索树中的插入操作
+package com.leetcode.solution.binaryTree.insertIntoABinarySearchTree.second;
 
-<https://leetcode.cn/problems/insert-into-a-binary-search-tree/>
+import com.leetcode.solution.binaryTree.TreeNode;
+import com.leetcode.solution.binaryTree.insertIntoABinarySearchTree.InsertIntoBSTTemplate;
 
-### 思路
-
-1. 单指针，val 与根节点进行比较，如果根节点的值大于 val，则指针指向左边，否则指针指向右边
-2. 如果左子树或者右子树为 null，则插入并返回
-3. 如果是空树，直接返回以 val 为根节点的树
-
-### 总结
-
-1. 思路问题，思路需要总结，没有想好思路
-
-```java
-class Solution {
+public class InsertIntoBST extends InsertIntoBSTTemplate {
+    @Override
     public TreeNode insertIntoBST(TreeNode root, int val) {
         // 思路：二分
         // 		1. 如果是空树 => 直接返回以 val 为根节点的树
@@ -43,4 +34,3 @@ class Solution {
         return root;
     }
 }
-```

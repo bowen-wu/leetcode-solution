@@ -1,26 +1,13 @@
-## 从中序与后序遍历序列构造二叉树
+package com.leetcode.solution.binaryTree.constructBinaryTreeFromInorderAndPostorderTraversal.second;
 
-<https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/>
+import com.leetcode.solution.binaryTree.TreeNode;
+import com.leetcode.solution.binaryTree.constructBinaryTreeFromInorderAndPostorderTraversal.BuildTreeTemplate;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-1. 后序最后一个确定根节点
-2. 中序区分左右
-3. left
-    1. inorder => [inStart, rootIndex - 1] => 个数：rootIndex - inStart
-    2. postorder => [postStart, postStart + rootIndex - inStart - 1]
-4. right
-    1. inorder => [rootIndex + 1, inEnd]
-    2. postorder => [postStart + rootIndex - inStart, postEnd - 1]
-
-### 总结
-
-| 问题行数 | 错误点           | 正确写法            | 错误原因 |
-|------|---------------|-----------------|------|
-| 5    | order == null | inorder == null | 笔误   |
-
-```java
-class Solution {
+public class BuildTree extends BuildTreeTemplate {
+    @Override
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         // 思路：后续确定根节点，中序分左右 => 中序分左右之后，拿到左右子树个数，之后继续构造
         // 		使用 Map 存储中序 value -> index
@@ -49,4 +36,3 @@ class Solution {
         return node;
     }
 }
-```

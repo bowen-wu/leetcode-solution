@@ -1,23 +1,15 @@
-## 二叉树的中序遍历
+package com.leetcode.solution.binaryTree.binaryTreeInorderTraversal.second;
 
-<https://leetcode.cn/problems/binary-tree-inorder-traversal/>
+import com.leetcode.solution.binaryTree.TreeNode;
+import com.leetcode.solution.binaryTree.binaryTreeInorderTraversal.InorderTraversalTemplate;
 
-### 思路
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
-1. 递归遍历
-2. 非递归遍历 => stack => 利用栈模拟递归 => O(n) + O(logn)
-    1. 首先对左子树进行迭代
-    2. 当前节点为空时进行出栈操作，并访问栈顶节点，将当前节点用右子节点代替
-
-### 总结
-
-| 问题行数 | 错误点                              | 正确写法             | 错误原因   |
-|------|----------------------------------|------------------|--------|
-| 10   | !stack.isEmpty() && node != null | -                | 大意     |
-| 12   | stack.add(node)                  | stack.push(node) | API 不熟 |
-
-```java
-class Solution {
+public class InorderTraversal extends InorderTraversalTemplate {
+    @Override
     public List<Integer> inorderTraversal(TreeNode root) {
         // 思路：使用栈模拟递归
         List<Integer> result = new ArrayList<>();
@@ -38,6 +30,7 @@ class Solution {
         return result;
     }
 
+    @Override
     public List<Integer> inorderTraversalWithRecursion(TreeNode root) {
         // 思路：递归 => 左根右
         List<Integer> result = new ArrayList<>();
@@ -51,4 +44,3 @@ class Solution {
         return result;
     }
 }
-```
