@@ -22,7 +22,7 @@ import com.leetcode.solution.depthFirstSearch.TreeNode;
  * 输出：true
  */
 abstract public class IsBalancedTemplate {
-    abstract public boolean isBalancedTraversal(TreeNode root);
-
     abstract public boolean isBalanced(TreeNode root);
+
+    abstract public boolean isBalancedDivideAndConquer(TreeNode root);
 }

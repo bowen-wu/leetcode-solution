@@ -5,7 +5,7 @@ import com.leetcode.solution.depthFirstSearch.balancedBinaryTree.IsBalancedTempl
 
 public class IsBalanced extends IsBalancedTemplate {
     @Override
-    public boolean isBalanced(TreeNode root) {
+    public boolean isBalancedDivideAndConquer(TreeNode root) {
         // 思路：分治法 => 求得左右子树的高度，=> left subTree is balanced & right subTree is balanced & leftHeight rightHeight < 1
         if (root == null) {
             return true;
@@ -14,7 +14,7 @@ public class IsBalanced extends IsBalancedTemplate {
         int leftHeight = getHeight(root.left) + 1;
         int rightHeight = getHeight(root.right) + 1;
 
-        return isBalanced(root.left) && isBalanced(root.right) && Math.abs(leftHeight - rightHeight) <= 1;
+        return isBalancedDivideAndConquer(root.left) && isBalancedDivideAndConquer(root.right) && Math.abs(leftHeight - rightHeight) <= 1;
     }
 
     private int getHeight(TreeNode node) {
@@ -29,7 +29,7 @@ public class IsBalanced extends IsBalancedTemplate {
     }
 
     @Override
-    public boolean isBalancedTraversal(TreeNode root) {
+    public boolean isBalanced(TreeNode root) {
         // 遍历法 => 从深度开始计算，如果是 -1，就一直返回来
         if (root == null) {
             return true;

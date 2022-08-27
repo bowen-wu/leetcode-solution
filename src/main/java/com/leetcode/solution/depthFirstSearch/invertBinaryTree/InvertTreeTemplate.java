@@ -21,5 +21,6 @@ import com.leetcode.solution.depthFirstSearch.TreeNode;
  */
 abstract public class InvertTreeTemplate {
     abstract public TreeNode invertTree(TreeNode root);
+
     abstract public TreeNode invertTreeDivideAndConquer(TreeNode root);
 }

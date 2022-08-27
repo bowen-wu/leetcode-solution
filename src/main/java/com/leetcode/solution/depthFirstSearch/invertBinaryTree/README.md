@@ -16,7 +16,7 @@
 
 ### 总结
 
-1. doSomething(node) => 一次翻转
+1. 遍历法 doSomething(node) => 一次翻转
 
 ```java
 class Solution {
@@ -54,3 +54,22 @@ class Solution {
     }
 }
 ```
+
+### 理解分治法
+
+0. 问题：翻转二叉树
+1. 分治法分治问题是什么？
+    1. 分治法分治问题 => 翻转以 root 为根节点的二叉树
+    2. 翻转以 root 为根节点的二叉树
+    3. 翻转以 root.left 为根节点的二叉树
+    4. 翻转以 root.right 为根节点的二叉树
+    5. 翻转以 root.left.left 为根节点的二叉树
+    6. 翻转以 root.left.right 为根节点的二叉树
+    7. 翻转以 root.right.left 为根节点的二叉树
+    8. 翻转以 root.right.right 为根节点的二叉树
+2. 分治法子问题和原问题的关系是什么？
+    1. 原问题 => 翻转以 root 为根节点的二叉树
+    2. 子问题 left => 翻转以 root.left 为根节点的二叉树
+    3. 子问题 right => 翻转以 root.right 为根节点的二叉树
+    4. 原问题与子问题关系(Combine) => 原问题 == 子问题 left + 子问题 right + root 的一次翻转
+    5. 子问题 left 和 子问题 right 比原问题少了一个节点 root => 规模减小
