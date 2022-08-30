@@ -1,6 +1,6 @@
 ## 路径总和 II
 
-<https://leetcode.cn/problems/sum-root-to-leaf-numbers-ii/>
+<https://leetcode.cn/problems/path-sum-ii/>
 
 ### 思路
 

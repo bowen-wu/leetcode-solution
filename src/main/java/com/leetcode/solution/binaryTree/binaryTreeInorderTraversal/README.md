@@ -11,10 +11,11 @@
 
 ### 总结
 
-| 问题行数 | 错误点                              | 正确写法             | 错误原因   |
-|------|----------------------------------|------------------|--------|
-| 10   | !stack.isEmpty() && node != null | -                | 大意     |
-| 12   | stack.add(node)                  | stack.push(node) | API 不熟 |
+| 问题行数 | 错误点                              | 正确写法                 | 错误原因   |
+|------|----------------------------------|----------------------|--------|
+| 10   | !stack.isEmpty() && node != null | -                    | 大意     |
+| 12   | stack.add(node)                  | stack.push(node)     | API 不熟 |
+| 30   | result.add(root.value)           | result.add(root.val) | 大意     |
 
 ```java
 class Solution {

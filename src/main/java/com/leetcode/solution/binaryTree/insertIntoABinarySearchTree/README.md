@@ -12,6 +12,10 @@
 
 1. 思路问题，思路需要总结，没有想好思路
 
+| 问题行数 | 错误点         | 正确写法                     | 错误原因                                    |
+|------|-------------|--------------------------|-----------------------------------------|
+| 7    | return null | return new TreeNode(val) | 当 root == null 时，应该返回以 val 为根节点的树。没考虑全面 |
+
 ```java
 class Solution {
     public TreeNode insertIntoBST(TreeNode root, int val) {

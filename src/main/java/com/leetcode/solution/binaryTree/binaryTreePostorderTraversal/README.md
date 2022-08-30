@@ -29,12 +29,16 @@
 
 ### 总结
 
-| 问题行数    | 错误点                                  | 正确写法                     | 错误原因                 |
-|---------|--------------------------------------|--------------------------|----------------------|
-| 30      | pulic NodeWithFlag                   | public NodeWithFlag      | 笔误                   |
-| 17 & 20 | stack.pop().val / stack.peek().right | stack.pop().getNode()    | 大意                   |
-| 5       | List<Integet>                        | List<Integer>            | 笔误                   |
-| 16      | stack.peek().isVisited               | stack.peek().isVisited() | isVisited 是一个方法，不是属性 |
+| 问题行数             | 错误点                                  | 正确写法                      | 错误原因                      |
+|------------------|--------------------------------------|---------------------------|---------------------------|
+| 30               | pulic NodeWithFlag                   | public NodeWithFlag       | 笔误                        |
+| 17 & 20          | stack.pop().val / stack.peek().right | stack.pop().getNode()     | 大意                        |
+| 5                | List<Integet>                        | List<Integer>             | 笔误                        |
+| 16               | stack.peek().isVisited               | stack.peek().isVisited()  | isVisited 是一个方法，不是属性      |
+| 第三遍 63           | stack2.push(node.right)              | stack1.push(node.right)   | 笔误                        |
+| 第三遍 16           | stack.peek().isVisited               | stack.peek().isVisited()  | isVisited 是一个方法，不是属性      |
+| 第三遍 35 & 39 & 43 | public getNode()                     | public TreeNode getNode() | 方法签名包括返回值类型，脱离 IDEA 不会码代码 |
+| 第三遍 17 & 20      | stack.pop().val / stack.peek().right | stack.pop().getNode()     | 大意                        |
 
 ```java
 class Solution {
