@@ -12,6 +12,7 @@
 ### 总结
 
 1. 在比较的时候要注意**左子树最大值**和**右子树最小值**
+2. 大小比较 => min < root.left.val < root.val < root.right.val < max => 破坏了这个大小则返回 false
 
 // TODO: 总结一下返回值是 boolean 的问题
 
