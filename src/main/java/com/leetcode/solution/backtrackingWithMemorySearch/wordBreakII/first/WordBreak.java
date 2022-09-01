@@ -1,6 +1,6 @@
-package com.leetcode.solution.backtracking.wordBreakII.first;
+package com.leetcode.solution.backtrackingWithMemorySearch.wordBreakII.first;
 
-import com.leetcode.solution.backtracking.wordBreakII.WordBreakTemplate;
+import com.leetcode.solution.backtrackingWithMemorySearch.wordBreakII.WordBreakTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;

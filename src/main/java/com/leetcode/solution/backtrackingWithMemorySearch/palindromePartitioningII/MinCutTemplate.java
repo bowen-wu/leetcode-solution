@@ -1,4 +1,4 @@
-package com.leetcode.solution.backtracking.palindromePartitioningII;
+package com.leetcode.solution.backtrackingWithMemorySearch.palindromePartitioningII;
 
 /**
  * https://leetcode.cn/problems/palindrome-partitioning-ii/

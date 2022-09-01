@@ -1,4 +1,4 @@
-package com.leetcode.solution.backtracking.wordBreak;
+package com.leetcode.solution.backtrackingWithMemorySearch.wordBreak;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.leetcode.solution.backtracking.palindromePartitioning;
+package com.leetcode.solution.backtrackingWithMemorySearch.palindromePartitioning;
 
 import java.util.List;
 

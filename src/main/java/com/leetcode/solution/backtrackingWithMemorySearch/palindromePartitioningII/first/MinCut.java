@@ -1,6 +1,6 @@
-package com.leetcode.solution.backtracking.palindromePartitioningII.first;
+package com.leetcode.solution.backtrackingWithMemorySearch.palindromePartitioningII.first;
 
-import com.leetcode.solution.backtracking.palindromePartitioningII.MinCutTemplate;
+import com.leetcode.solution.backtrackingWithMemorySearch.palindromePartitioningII.MinCutTemplate;
 
 import java.util.Arrays;
 import java.util.HashMap;
