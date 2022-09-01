@@ -15,5 +15,6 @@
     1. 构造节点访问数组 => 访问过为 true，没访问过是 false
     2. 剪枝1 => for loop 时如果该元素访问过则跳过
     3. 剪枝2 => 如果该元素和前一个元素相同并且前一个元素 visited == false
+      ![剪枝2](https://github.com/bowen-wu/leetcode-solution/blob/master/src/main/java/com/leetcode/solution/backtracking/permutationsII/%E5%89%AA%E6%9E%9D2.png)
 8. 如何分解子问题到下一层 => for loop
 9. 如何回溯 => 删除单一解的最后一个元素

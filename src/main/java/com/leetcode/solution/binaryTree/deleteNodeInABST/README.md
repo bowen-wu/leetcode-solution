@@ -18,7 +18,7 @@
 2. 如果左右子树都有，那么要找到左子树的最大值，之后还要找到该最大值的父节点
 
 ```java
-// 错误实例：遍历法
+// 错误示例：遍历法
 public class DeleteNode extends DeleteNodeTemplate {
     @Override
     public TreeNode deleteNode(TreeNode root, int key) {
