@@ -1,46 +1,26 @@
-## 分割回文串
+package com.leetcode.solution.backtrackingWithMemorySearch.palindromePartitioning.second;
 
-<https://leetcode.cn/problems/palindrome-partitioning/>
+import com.leetcode.solution.backtrackingWithMemorySearch.palindromePartitioning.PartitionTemplate;
 
-### 思路
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-回溯法 => 组合问题 => 所有元素
-
-1. 是否需要排序 => 不需要
-2. 是否需要元素位置索引 => 需要
-3. helper 函数定义 => ` void helper(List<List<Integer>> result, List<Integer> list, String s, int position) `
-4. 递归何时退出 => position >= s.length()
-5. 单一解何时加入解集 => position == s.length() - 1
-6. 剪枝 => 如果该 str 不是字符串
-7. 递归分解子问题到下一层 => for(int i = 0; i < s.length(); i++)
-8. 如何回溯 => 单一解删除最后一个元素
-
-#### 优化
-
-1. 判断是否是回文串是 Duplicate Work => 记忆化搜索
-2. 分割 bbb 是 Duplicate Work => 记忆化搜索
-
-### 总结
-
-| 问题行数 | 错误点                                                        | 正确写法                                                     | 错误原因 |
-|------|------------------------------------------------------------|----------------------------------------------------------|------|
-| 24   | Map<Integer, List<List<String>>> memo = new ArrayList<>(); | Map<Integer, List<List<String>>> memo = new HashMap<>(); | 笔误   |
-| 44   | result.add(s.substring(position));                         | result.add(Arrays.asList(s.substring(position)));        | 大意   |
-| 83   | for (j = i + 2;                                            | for (int j = i + 2;                                      | 大意   |
-
-```java
-class Solution {
+public class Partition extends PartitionTemplate {
+    @Override
     public List<List<String>> partition(String s) {
         // Ideas: backtracking + memory search
         // 1. is need sort => no
         // 2. is need element index => yes
         // 3. helper => List<List<String>> helper(Map<Integer, List<String>> memo, String s, int position)
-        // 4. when exit recursion => position >= s.length() 
-        // 5. when single result add to solution set => 
+        // 4. when exit recursion => position >= s.length()
+        // 5. when single result add to solution set =>
         // 6. pruning
-        //		1. hit cache => return cache 
+        //		1. hit cache => return cache
         // 7. recursive decomposition sub problem to next level => for loop => s.length() - 1 -> position
-        // 8. how to backtracking => 
+        // 8. how to backtracking =>
         // 9. memory search => 1. isValidPalindrome + 2. split cache
         // check input
         if (s == null || s.length() == 0) {
@@ -62,7 +42,7 @@ class Solution {
             return memo.get(position);
         }
 
-        // constructe result
+        // construct result
         List<List<String>> result = new ArrayList<>();
 
         // exit recursion
@@ -72,7 +52,7 @@ class Solution {
 
         // is [position, s.length() - 1] result
         if (isValidPalindrome[position][s.length() - 1]) {
-            result.add(Arrays.asList(s.substring(position)));
+            result.add(Collections.singletonList(s.substring(position)));
         }
 
         for (int i = s.length() - 1; i >= position; i--) {
@@ -85,7 +65,7 @@ class Solution {
             String substring = s.substring(position, i + 1);
             List<List<String>> next = helper(memo, s, i + 1, isValidPalindrome);
 
-            // constructe single result
+            // construct single result
             for (List<String> item : next) {
                 List<String> singleResult = new ArrayList<>();
                 singleResult.add(substring);
@@ -98,6 +78,7 @@ class Solution {
         memo.put(position, result);
         return result;
     }
+
 
     private boolean[][] checkIsValidPalindrome(String str) {
         boolean[][] isValidPalindrome = new boolean[str.length()][str.length()];
@@ -119,4 +100,3 @@ class Solution {
         return isValidPalindrome;
     }
 }
-```

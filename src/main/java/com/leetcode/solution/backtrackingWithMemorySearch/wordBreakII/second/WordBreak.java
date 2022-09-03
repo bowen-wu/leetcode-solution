@@ -1,36 +1,16 @@
-## 单词拆分 II
+package com.leetcode.solution.backtrackingWithMemorySearch.wordBreakII.second;
 
-<https://leetcode.cn/problems/word-break-ii/>
+import com.leetcode.solution.backtrackingWithMemorySearch.wordBreakII.WordBreakTemplate;
 
-### 思路
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-回溯法 => 排列问题
-
-1. 是否需要排序 => 不需要
-2. 是否需要元素位置索引 => 需要
-3. helper 函数定义
-   => ` void helper(List<String> result, StringBuffer stringBuffer, String s, int position, Set<String> set) `
-4. 递归何时推出 => position >= s.length()
-5. 单一解何时加入解集 => position == s.length()
-6. 剪枝
-7. 递归分解子问题到下一层 => for (int i = position; i < s.length(); i++)
-8. 如何回溯 => 单一解删除最后一个元素
-
-#### 优化
-
-1. 记忆化搜索
-
-### 总结
-
-| 问题行数 | 错误点                                             | 正确写法                                             | 错误原因       |
-|------|-------------------------------------------------|--------------------------------------------------|------------|
-| 46   | if (int i = s.length() - 1; i >= position; i--) | for (int i = s.length() - 1; i >= position; i--) | 笔误         |
-| 14   | return false;                                   | return new ArrayList<>()                         | 如何没有返回空。大意 |
-| 53   | List<String> next = help(memo, s, i + 1, set);  | List<String> next = helper(memo, s, i + 1, set); | 大意         |
-| 62   | memo[position] = result;                        | memo.put(position, result);                      | 大意         |
-
-```java
-class Solution {
+public class WordBreak extends WordBreakTemplate {
+    @Override
     public List<String> wordBreak(String s, List<String> wordDict) {
         // Ideas: backtracking + memory search
         // 1. is need sort => no
@@ -95,4 +75,3 @@ class Solution {
         return result;
     }
 }
-```
