@@ -1,38 +1,17 @@
-## 电话号码的字母组合
+package com.leetcode.solution.backtracking.letterCombinationsOfAPhoneNumber.second;
 
-<https://leetcode.cn/problems/letter-combinations-of-a-phone-number/>
+import com.leetcode.solution.backtracking.letterCombinationsOfAPhoneNumber.LetterCombinationsTemplate;
 
-### 思路
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-回溯法 => 组合问题 => 挑选全部元素
-
-1. 是否需要排序 => 不需要
-2. 是否需要元素位置索引 => 需要
-3. helper 函数定义 => ` void helper(List<String> result, List<String> list, String digits, int position) `
-4. 递归何时退出 => position == digits.length()
-5. 单一解何时加入解集 => position == digits.length()
-6. 剪枝 => 无
-7. 如何分解子问题到下一层 => for(int i = 0; i < map.get(digits[position]).length(); i++)
-8. 如何回溯 => 单一解删除最后一个元素
-
-#### 优化
-
-1. position 可是使用 list 的 size 代替
-
-### 总结
-
-1. position 使用 stringBuffer.length() 代替
-
-| 问题行数 | 错误点                                          | 正确写法                                                | 错误原因                              |
-|------|----------------------------------------------|-----------------------------------------------------|-----------------------------------|
-| 15   | NullPointerException                         | -                                                   | map 未初始化                          |
-| 48   | int i = position                             | int i = 0                                           | 遍历时初始值应该是 0。边界问题                  |
-| 50   | helper(result, stringBuffer, digits, i + 1); | helper(result, stringBuffer, digits, position + 1); | 应该传入下一层的初始值，应该是 position + 1。边界问题 |
-
-```java
-class Solution {
+public class LetterCombinations extends LetterCombinationsTemplate {
     private Map<Character, List<Character>> map;
 
+    @Override
     public List<String> letterCombinations(String digits) {
         // Ideas: backtracking => 排列问题
         // 1. 是否需要排序 => 不需要
@@ -76,12 +55,10 @@ class Solution {
         }
 
         // 递归分解子问题到下一层 + 剪枝
-        List<Character> list = map.get(digits.charAt(stringBuffer.length()));
-        for (int i = 0; i < list.size(); i++) {
-            stringBuffer.append(list.get(i));
+        for (Character character : map.get(digits.charAt(stringBuffer.length()))) {
+            stringBuffer.append(character);
             helper(result, stringBuffer, digits);
             stringBuffer.deleteCharAt(stringBuffer.length() - 1);
         }
     }
 }
-```

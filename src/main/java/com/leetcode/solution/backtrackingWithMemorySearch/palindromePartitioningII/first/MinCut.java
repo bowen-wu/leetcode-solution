@@ -26,46 +26,6 @@ public class MinCut extends MinCutTemplate {
         return helper(memo, s, 0, isValidPalindrome) - 1;
     }
 
-    public int minCutWithCurrentPartCount(String s) {
-        // check input
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
-
-        // 处理源数据 + 创建记忆化搜索空间
-        // 表示 => 第i个位置后的字符串分割成回文串的最小部分数
-        boolean[][] isValidPalindrome = checkIsValidPalindrome(s);
-        int[] memo = new int[s.length()];
-        Arrays.fill(memo, Integer.MAX_VALUE);
-        helper(memo, s, 0, 0, isValidPalindrome);
-        return minCutNum;
-    }
-
-    private void helper(int[] memo, String s, int position, int currentPartCount, boolean[][] isValidPalindrome) {
-        // 递归何时退出
-        if (position >= s.length()) {
-            minCutNum = Math.min(currentPartCount - 1, minCutNum);
-            return;
-        }
-
-        if (currentPartCount >= memo[position]) {
-            return;
-        }
-
-        memo[position] = currentPartCount;
-
-        // 递归分解子问题
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (!isValidPalindrome[position][i]) {
-                continue;
-            }
-
-            currentPartCount++;
-            helper(memo, s, i + 1, currentPartCount, isValidPalindrome);
-            currentPartCount--;
-        }
-    }
-
     private int helper(Map<Integer, Integer> memo, String s, int position, boolean[][] isValidPalindrome) {
         // 命中缓存
         if (memo.containsKey(position)) {
@@ -101,6 +61,52 @@ public class MinCut extends MinCutTemplate {
         // 更新 memo
         memo.put(position, result);
         return result;
+    }
+
+    public int minCutWithCurrentPartCount(String s) {
+        // check input
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+
+        // 处理源数据 + 创建记忆化搜索空间
+        // 表示 => 第i个位置后的字符串分割成回文串的最小部分数
+        boolean[][] isValidPalindrome = checkIsValidPalindrome(s);
+        int[] memo = new int[s.length()];
+        Arrays.fill(memo, Integer.MAX_VALUE);
+        helper(memo, s, 0, 0, isValidPalindrome);
+        return minCutNum;
+    }
+
+    private void helper(int[] memo, String s, int position, int currentPartCount, boolean[][] isValidPalindrome) {
+        // 递归何时退出
+        if (position >= s.length()) {
+            minCutNum = Math.min(currentPartCount - 1, minCutNum);
+            return;
+        }
+
+        if (isValidPalindrome[position][s.length() - 1]) {
+            memo[position] = 1;
+            minCutNum = Math.min(currentPartCount, minCutNum);
+            return;
+        }
+
+        if (currentPartCount >= memo[position]) {
+            return;
+        }
+
+        memo[position] = currentPartCount;
+
+        // 递归分解子问题
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (!isValidPalindrome[position][i]) {
+                continue;
+            }
+
+            currentPartCount++;
+            helper(memo, s, i + 1, currentPartCount, isValidPalindrome);
+            currentPartCount--;
+        }
     }
 
     private boolean[][] checkIsValidPalindrome(String s) {
