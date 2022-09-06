@@ -30,6 +30,47 @@
 1. 注意全局变量的初始值
 2. 注意如果 root == null 的返回值
 
+| 问题行数 | 错误点                                     | 正确写法                                    | 错误原因                                                                                                                                                          |
+|------|-----------------------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2    | Integet.MIN_VALUE                       | Integer.MIN_VALUE                       | 笔误                                                                                                                                                            |
+| 16   | return Math.max(pathSum, helper(root)); | return Math.max(helper(root), pathSum); | 先计算 helper 更新 pathSum，之后才能和 pathSum 比较。[Argument Lists are Evaluated Left-to-Right](https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.7.4) |
+
+```java
+class Solution {
+    private int pathSum = Integer.MIN_VALUE;
+
+    public int maxPathSum(TreeNode root) {
+        // Ideas: 对于每一个节点 root：
+        //			1. 只选择 root
+        //			2. 选择 root.left
+        //			3. 选择 root.right
+        //			4. 选择 root + root.left
+        //			5. 选择 root + root.right
+        //			6. 选择 root.left + root + root.right
+        if (root == null) {
+            return 0;
+        }
+
+        return Math.max(helper(root), pathSum);
+    }
+
+    private int helper(TreeNode root) {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+
+        int left = Math.max(helper(root.left), 0);
+        int right = Math.max(helper(root.right), 0);
+
+        if (left + root.val + right > pathSum) {
+            pathSum = left + root.val + right;
+        }
+
+        return Math.max(Math.max(left + root.val, right + root.val), root.val);
+    }
+}
+```
+
 ### 理解分治法
 
 0. 原问题：二叉树中的最大路径和

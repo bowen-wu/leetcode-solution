@@ -79,6 +79,12 @@ public class DeleteNode extends DeleteNodeTemplate {
 }
 ```
 
+| 问题行数 | 错误点                                                    | 正确写法                                                   | 错误原因                |
+|------|--------------------------------------------------------|--------------------------------------------------------|---------------------|
+| 12   | if (root.left == null && right.right == null)          | if (root.left == null && root.right == null)           | 笔误                  |
+| 27   | deleteNode(root.left, leftMaxNode.val);                | root.left = deleteNode(root.left, maxNodeInLeft.val);  | 应该更新 root.left。思路问题 |
+| 16   | if (root.left != null &#124;&#124; root.right != null) | if (root.left == null &#124;&#124; root.right == null) | 判断只有一个子树。很生气        | 
+
 ```java
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
