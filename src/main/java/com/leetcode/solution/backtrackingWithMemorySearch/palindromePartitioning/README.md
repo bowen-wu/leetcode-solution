@@ -22,11 +22,15 @@
 
 ### 总结
 
-| 问题行数 | 错误点                                                        | 正确写法                                                     | 错误原因 |
-|------|------------------------------------------------------------|----------------------------------------------------------|------|
-| 24   | Map<Integer, List<List<String>>> memo = new ArrayList<>(); | Map<Integer, List<List<String>>> memo = new HashMap<>(); | 笔误   |
-| 44   | result.add(s.substring(position));                         | result.add(Arrays.asList(s.substring(position)));        | 大意   |
-| 83   | for (j = i + 2;                                            | for (int j = i + 2;                                      | 大意   |
+| 问题行数 | 错误点                                                          | 正确写法                                                         | 错误原因 |
+|------|--------------------------------------------------------------|--------------------------------------------------------------|------|
+| 24   | Map<Integer, List<List<String>>> memo = new ArrayList<>();   | Map<Integer, List<List<String>>> memo = new HashMap<>();     | 笔误   |
+| 44   | result.add(s.substring(position));                           | result.add(Arrays.asList(s.substring(position)));            | 大意   |
+| 83   | for (j = i + 2;                                              | for (int j = i + 2;                                          | 大意   |
+| 35   | List<List<String>> result = new ArryList<>();                | List<List<String>> result = new ArrayList<>();               | 大意   |
+| 44   | result.add(Collections.singleList(s.substring(position)))    | result.add(Collections.singletonList(s.substring(position))) | 大意   |
+| 78   | isValidPalindrome[i - 1][i] = s.charAt(i - 1) == a.charAt(i) | isValidPalindrome[i - 1][i] = s.charAt(i - 1) == s.charAt(i) | 大意   |
+| 88   | miss return                                                  | return isValidPalindrome;                                    | 大意   |
 
 ```java
 class Solution {

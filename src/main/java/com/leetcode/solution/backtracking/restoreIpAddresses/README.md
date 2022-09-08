@@ -29,11 +29,15 @@
 
 TODO: 能否使用记忆化搜索
 
-| 问题行数 | 错误点                                               | 正确写法                                                | 错误原因              |
-|------|---------------------------------------------------|-----------------------------------------------------|-------------------|
-| 38   | -                                                 | 新增 isValidIpPart 函数                                 | 没有考虑 ipPart < 255 |
-| 38   | if (isValidIpPart(substring)                      | if (!isValidIpPart(substring)                       | 大意                |
-| 50   | if (ipPart.chatAt(0) == '0' && ipPart.length > 1) | if (ipPart.charAt(0) == '0' && ipPart.length() > 1) | 没有考虑 ipPart < 255 |
+| 问题行数 | 错误点                                                                                                                                | 正确写法                                                                                                                                       | 错误原因                       |
+|------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| 38   | -                                                                                                                                  | 新增 isValidIpPart 函数                                                                                                                        | 没有考虑 ipPart < 255          |
+| 38   | if (isValidIpPart(substring)                                                                                                       | if (!isValidIpPart(substring)                                                                                                              | 大意                         |
+| 50   | if (ipPart.chatAt(0) == '0' && ipPart.length > 1)                                                                                  | if (ipPart.charAt(0) == '0' && ipPart.length() > 1)                                                                                        | 没有考虑 ipPart < 255          |
+| 17   | s.length                                                                                                                           | s.length()                                                                                                                                 | length 是字符串方法。大意           |
+| 37   | if (!isValidIpPart(substring) &#124;&#124; (1 * (4 - list.size()) > s.length()) &#124;&#124; (s.length() > 3 * (4 - list.size()))) | if (!isValidIpPart(substring) &#124;&#124; (1 * (4 - list.size()) > s.length() - i) &#124;&#124; (s.length() - i > 3 * (4 - list.size()))) | 剪枝 length 时需要把已经用掉的减去。剪枝思路 |
+
+1. 单一解加入解集 => ` list.size() == 4 `
 
 ```java
 class Solution {

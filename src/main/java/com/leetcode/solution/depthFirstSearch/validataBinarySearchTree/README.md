@@ -14,6 +14,11 @@
 1. 在比较的时候要注意**左子树最大值**和**右子树最小值**
 2. 大小比较 => min < root.left.val < root.val < root.right.val < max => 破坏了这个大小则返回 false
 
+| 问题行数 | 错误点                                                                                 | 正确写法                                                                                | 错误原因           |
+|------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|----------------|
+| 18   | if (root.left.val >= root.val &#124;&#124; (max != null && root.left.val >= max))   | if (root.left.val >= root.val &#124;&#124; (min != null && root.left.val <= min))   | 找最近的去进行比较。思路问题 |
+| 24   | if (root.right.val <= root.val &#124;&#124; (min != null && root.right.val <= min)) | if (root.right.val <= root.val &#124;&#124; (max != null && root.right.val >= max)) | 找最近的去比较。思路问题   |
+
 ```java
 class Solution {
     public boolean isValidBST(TreeNode root) {

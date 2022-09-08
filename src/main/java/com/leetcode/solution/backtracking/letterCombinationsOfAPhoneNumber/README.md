@@ -23,11 +23,13 @@
 
 1. position 使用 stringBuffer.length() 代替
 
-| 问题行数 | 错误点                                          | 正确写法                                                | 错误原因                              |
-|------|----------------------------------------------|-----------------------------------------------------|-----------------------------------|
-| 15   | NullPointerException                         | -                                                   | map 未初始化                          |
-| 48   | int i = position                             | int i = 0                                           | 遍历时初始值应该是 0。边界问题                  |
-| 50   | helper(result, stringBuffer, digits, i + 1); | helper(result, stringBuffer, digits, position + 1); | 应该传入下一层的初始值，应该是 position + 1。边界问题 |
+| 问题行数 | 错误点                                                | 正确写法                                                  | 错误原因                              |
+|------|----------------------------------------------------|-------------------------------------------------------|-----------------------------------|
+| 15   | NullPointerException                               | -                                                     | map 未初始化                          |
+| 48   | int i = position                                   | int i = 0                                             | 遍历时初始值应该是 0。边界问题                  |
+| 50   | helper(result, stringBuffer, digits, i + 1);       | helper(result, stringBuffer, digits, position + 1);   | 应该传入下一层的初始值，应该是 position + 1。边界问题 |
+| 28   | if (digits == 0 &#124;&#124; digits.length() == 0) | if (digits == null &#124;&#124; digits.length() == 0) | 笔误                                |
+| 48   | i < list.length()                                  | i < list.size()                                       | 遍历时初始值应该是 0。边界问题                  |
 
 ```java
 class Solution {

@@ -21,10 +21,15 @@
 
 ### 总结
 
-| 问题行数    | 错误点                                       | 正确写法                                          | 错误原因              |
-|---------|-------------------------------------------|-----------------------------------------------|-------------------|
-| 24      | boolean[] visited = new int[nums.length]; | boolean[] visited = new boolean[nums.length]; | 类型写错。大意           |
-| 47 & 50 | -                                         | visited[i] = true; & visited[i] = false       | 忘记更新 visited。思路问题 |
+| 问题行数    | 错误点                                                                                       | 正确写法                                                                              | 错误原因                                 |
+|---------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------|
+| 24      | boolean[] visited = new int[nums.length];                                                 | boolean[] visited = new boolean[nums.length];                                     | 类型写错。大意                              |
+| 47 & 50 | -                                                                                         | visited[i] = true; & visited[i] = false                                           | 忘记更新 visited。思路问题                    |
+| 41      | if ((i > 0 && nums[i - 1] == nums[i] && !visited[i]) &#124;&#124; list.contains(nums[i])) | if ((i > 0 && nums[i - 1] == nums[i] && !visited[i - 1]) &#124;&#124; visited[i]) | 1. 是否包含应该使用是否访问过，2. 应该查看前一个是否访问。剪枝思路 |
+
+1. 剪枝
+    1. currentValue == prevValue && !visited[prev] => 现在的值和前一个值相同 && 前一个位置没有访问过
+    2. visited[i] => 这个位置上的元素访问过
 
 ```java
 class Solution {

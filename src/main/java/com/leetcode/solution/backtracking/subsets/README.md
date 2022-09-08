@@ -18,6 +18,8 @@
 | 21   | List<String> list         | List<Integer> list                 | 类型写错，应该是 Integer。大意         |
 | 28   | result.add(list)          | result.add(new ArrayList<>(list)); | 单一解加入解集时注意**Deep Copy**。注意点 |
 | 36   | int i = 0                 | int i = position                   | 初始值应该是 position             |
+| 28   | -                         | -                                  | 单一解加入解集无条件                  |
+| 28   | -                         | -                                  | 单一解先加入解集，后退出循环              |
 
 ```java
 class Solution {
