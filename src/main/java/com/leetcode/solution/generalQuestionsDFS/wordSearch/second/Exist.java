@@ -1,26 +1,12 @@
-## 单词搜索
+package com.leetcode.solution.generalQuestionsDFS.wordSearch.second;
 
-<https://leetcode.cn/problems/word-search/>
+import com.leetcode.solution.generalQuestionsDFS.wordSearch.ExistTemplate;
 
-### 思路
-
-二维问题 DFS
-
-1. 从起始点找到下一个可以移动的点
-
-### 总结
-
-| 问题行数 | 错误点                                                     | 正确写法                                                     | 错误原因                    |
-|------|---------------------------------------------------------|----------------------------------------------------------|-------------------------|
-| 58   | private checkRange(int[][] board, int x, int y)         | private boolean checkRange(int[][] board, int x, int y)  | 没有写返回值。大意               |
-| 58   | private boolean checkRange(int[][] board, int x, int y) | private boolean checkRange(char[][] board, int x, int y) | board 类型错误。大意           |
-| 54   | -                                                       | visited[x][y] = false;                                   | 需要回溯 => 将节点置为false。思路问题 |
-
-```java
-class Solution {
+public class Exist extends ExistTemplate {
     private final int[] dx = {-1, 0, 1, 0};
     private final int[] dy = {0, -1, 0, 1};
 
+    @Override
     public boolean exist(char[][] board, String word) {
         // Ideas: DFS 二维矩阵
         // check input
@@ -78,4 +64,3 @@ class Solution {
         return x >= 0 && x < board.length && y >= 0 && y < board[0].length;
     }
 }
-```

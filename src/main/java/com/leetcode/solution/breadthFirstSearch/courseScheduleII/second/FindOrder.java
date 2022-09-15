@@ -1,20 +1,16 @@
-## 课程表 II
+package com.leetcode.solution.breadthFirstSearch.courseScheduleII.second;
 
-<https://leetcode.cn/problems/course-schedule-ii/>
+import com.leetcode.solution.breadthFirstSearch.courseScheduleII.FindOrderTemplate;
 
-### 思路
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
-1. 拓扑排序
-2. 考虑是否成环
-
-### 总结
-
-| 问题行数 | 错误点                                                   | 正确写法                                              | 错误原因                   |
-|------|-------------------------------------------------------|---------------------------------------------------|------------------------|
-| 52   | return index == numCourses - 1 ? result : new int[0]; | return index == numCourses ? result : new int[0]; | 最终 index == numCourses |
-
-```java
-class Solution {
+public class FindOrder extends FindOrderTemplate {
+    @Override
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         // Ideas: Topological sort => in degree
         // check input
@@ -68,4 +64,3 @@ class Solution {
         return index == numCourses ? result : new int[0];
     }
 }
-```

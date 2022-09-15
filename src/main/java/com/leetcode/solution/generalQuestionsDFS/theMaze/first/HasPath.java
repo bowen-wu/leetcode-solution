@@ -45,7 +45,7 @@ public class HasPath extends HasPathTemplate {
                 newY += dy[i];
             }
 
-            // 撞到墙了，退一步
+            // 下一个位置就是墙了
             boolean result = dfs(maze, new int[]{newX, newY}, destination, visited);
             if (result) {
                 return true;

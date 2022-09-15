@@ -1,4 +1,4 @@
-package com.leetcode.solution.generalQuestionsDFS.basicMaze.first;
+package com.leetcode.solution.generalQuestionsDFS.basicMaze.second;
 
 import com.leetcode.solution.generalQuestionsDFS.Point;
 import com.leetcode.solution.generalQuestionsDFS.basicMaze.BasicMazeTemplate;
@@ -7,54 +7,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BasicMaze extends BasicMazeTemplate {
+    private final int[] dx = {0, -1, 0, 1};
+    private final int[] dy = {1, 0, -1, 0};
+
     @Override
     public List<List<Point>> basicMaze(int[][] maze, Point start, Point end) {
-        List<List<Point>> result = new ArrayList<>();
+        // Ideas: dfs 二维矩阵
+        // check input
         if (maze == null || maze.length == 0 || maze[0] == null || maze[0].length == 0) {
-            return result;
+            return null;
         }
 
         // marked
         boolean[][] visited = new boolean[maze.length][maze[0].length];
-
-        // single result
+        List<List<Point>> result = new ArrayList<>();
         List<Point> list = new ArrayList<>();
         list.add(start);
+
+        // traversal
         dfs(result, list, maze, start, end, visited);
+
         return result;
     }
 
     private void dfs(List<List<Point>> result, List<Point> list, int[][] maze, Point start, Point end, boolean[][] visited) {
-        // pruning
-        if (maze[start.x][start.y] == 1) {
+        // single result add to solution set => deep copy
+        if (start.x == end.x && start.y == end.y) {
+            result.add(new ArrayList<>(list));
             return;
         }
 
         // marked
         visited[start.x][start.y] = true;
 
-        // exit recursion
-        if (start.x == end.x && start.y == end.y) {
-            result.add(new ArrayList<>(list));
-            return;
-        }
-
-        // recursive decomposition to next level + pruning
-        int[] dx = {-1, 0, 1, 0};
-        int[] dy = {0, 1, 0, -1};
+        // recursive decomponsiton sub problem to next level => move
         for (int i = 0; i < 4; i++) {
-            Point newPoint = new Point(start.x + dx[i], start.y + dy[i]);
-            if (checkRange(maze, newPoint) && !visited[newPoint.x][newPoint.y]) {
+            int newX = start.x + dx[i];
+            int newY = start.y + dy[i];
+
+            // pruning
+            if (checkRange(maze, newX, newY) && !visited[newX][newY] && maze[newX][newY] == 0) {
+                Point newPoint = new Point(newX, newY);
                 list.add(newPoint);
                 dfs(result, list, maze, newPoint, end, visited);
-                Point remove = list.remove(list.size() - 1);
-                visited[remove.x][remove.y] = false;
+
+                // how to backtracking
+                list.remove(list.size() - 1);
+                visited[newX][newY] = false;
             }
         }
     }
 
-    private boolean checkRange(int[][] maze, Point point) {
-        return point.x >= 0 && point.x < maze.length && point.y >= 0 && point.y < maze[0].length;
+    private boolean checkRange(int[][] maze, int x, int y) {
+        return x >= 0 && x < maze.length && y >= 0 && y < maze[0].length;
     }
 
     public static void main(String[] args) {

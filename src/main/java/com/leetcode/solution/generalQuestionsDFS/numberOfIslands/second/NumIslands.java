@@ -1,22 +1,12 @@
-## 岛屿数量
+package com.leetcode.solution.generalQuestionsDFS.numberOfIslands.second;
 
-<https://leetcode.cn/problems/number-of-islands/>
+import com.leetcode.solution.generalQuestionsDFS.numberOfIslands.NumIslandsTemplate;
 
-### 思路
-
-二维矩阵 DFS => 求连通分量
-
-### 总结
-
-| 问题行数 | 错误点                                                                                  | 正确写法                                                                                 | 错误原因 |
-|------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|------|
-| 38   | if (chackRange(grid, newX, newY) && !visited[newX][newY] && grid[newX][newY] == '1') | if (checkRange(grid, newX, newY) && !visited[newX][newY] && grid[newX][newY] == '1') | 笔误   |
-
-```java
-class Solution {
+public class NumIslands extends NumIslandsTemplate {
     private final int[] dx = {0, -1, 0, 1};
     private final int[] dy = {-1, 0, 1, 0};
 
+    @Override
     public int numIslands(char[][] grid) {
         // Ideas: DFS => 二维矩阵求连通分量
         // check input
@@ -60,4 +50,3 @@ class Solution {
         return x >= 0 && x < grid.length && y >= 0 && y < grid[0].length;
     }
 }
-```

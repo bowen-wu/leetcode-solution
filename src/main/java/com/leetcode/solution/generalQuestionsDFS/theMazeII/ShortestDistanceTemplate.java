@@ -37,5 +37,7 @@ package com.leetcode.solution.generalQuestionsDFS.theMazeII;
  * 解析: 没有能够使球停在目的地的路径。
  */
 abstract public class ShortestDistanceTemplate {
-    abstract public int shortestDistance(int[][] maze, int[] start, int[] destination);
+    abstract public int shortestDistanceWithDFS(int[][] maze, int[] start, int[] destination);
+
+    abstract public int shortestDistanceWithBFS(int[][] maze, int[] start, int[] destination);
 }

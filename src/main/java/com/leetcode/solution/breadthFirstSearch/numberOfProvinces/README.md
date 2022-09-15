@@ -4,13 +4,16 @@
 
 ### 思路
 
-1. BFS
+1. 邻接矩阵求连通分量 => BFS
 
 ### 总结
 
-| 问题行数 | 错误点                                         | 正确写法                                                                                   | 错误原因                                         |
-|------|---------------------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------|
-| 33   | for (int adjacencyNode : isConnected[node]) | for (int adjacencyNode = 0; adjacencyNode < isConnected[node].length; adjacencyNode++) | 错误写法中 adjacencyNode == 0 &#124; 1，需要拿到索引而不是值 |
+1. isConnected 是邻接矩阵，不是二维矩阵
+
+| 问题行数 | 错误点                                                | 正确写法                                                                                   | 错误原因                                         |
+|------|----------------------------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------|
+| 33   | for (int adjacencyNode : isConnected[node])        | for (int adjacencyNode = 0; adjacencyNode < isConnected[node].length; adjacencyNode++) | 错误写法中 adjacencyNode == 0 &#124; 1，需要拿到索引而不是值 |
+| 33   | for (int adjacencyNode : isConnected[currentNode]) | for (int adjacencyNode = 0; adjacencyNode < isConnected[node].length; adjacencyNode++) | 索引才是节点。**注意**                                |
 
 ```java
 class Solution {

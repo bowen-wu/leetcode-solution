@@ -1,22 +1,13 @@
-## 克隆图
+package com.leetcode.solution.generalQuestionsDFS.cloneGraph.second;
 
-<https://leetcode.cn/problems/clone-graph/>
+import com.leetcode.solution.generalQuestionsDFS.cloneGraph.CloneGraphTemplate;
+import com.leetcode.solution.generalQuestionsDFS.cloneGraph.Node;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-1. dfs 遍历图
-2. 如果命中缓存，直接返回 => Map<Node, Node> => oldNode -> newNode
-3. 遇到新节点复制
-4. 新节点邻居节点 => dfs
-
-### 总结
-
-| 问题行数 | 错误点                                      | 正确写法                                      | 错误原因    |
-|------|------------------------------------------|-------------------------------------------|---------|
-| 23   | for (int adjacencyNode : node.neighbors) | for (Node adjacencyNode : node.neighbors) | 类型写错。大意 |
-
-```java
-class Solution {
+public class CloneGraph extends CloneGraphTemplate {
+    @Override
     public Node cloneGraph(Node node) {
         // Ideas: dfs
         // check input
@@ -46,4 +37,3 @@ class Solution {
         return newNode;
     }
 }
-```
