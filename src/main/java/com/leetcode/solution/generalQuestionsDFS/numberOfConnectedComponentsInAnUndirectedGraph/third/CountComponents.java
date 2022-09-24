@@ -1,21 +1,14 @@
-## 无向图中连通分量的数目
+package com.leetcode.solution.generalQuestionsDFS.numberOfConnectedComponentsInAnUndirectedGraph.third;
 
-<https://leetcode.cn/problems/number-of-connected-components-in-an-undirected-graph/>
+import com.leetcode.solution.breadthFirstSearch.numberOfConnectedComponentsInAnUndirectedGraph.CountComponentsTemplate;
 
-### 思路
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-1. 图中求连通分量
-2. 构建邻接表
-
-### 思路
-
-| 问题行数 | 错误点                                                                                    | 正确写法                                                                                     | 错误原因 |
-|------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------|
-| 35   | private void dfs(Map<Integer, List<Integer> adjacencyList, int start, boolean visited) | private void dfs(Map<Integer, List<Integer> adjacencyList, int start, boolean[] visited) | 大意   |
-| 12   | adjacencyList.put(n, new ArrayList<>())                                                | adjacencyList.put(i, new ArrayList<>())                                                  | 大意   |
-
-```java
-class Solution {
+public class CountComponents extends CountComponentsTemplate {
+    @Override
     public int countComponents(int n, int[][] edges) {
         // Ideas: construct adjacencyList => get connect component
         // check input
@@ -61,4 +54,3 @@ class Solution {
         }
     }
 }
-```

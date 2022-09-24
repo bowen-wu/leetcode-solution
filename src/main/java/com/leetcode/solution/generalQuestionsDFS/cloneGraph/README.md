@@ -14,6 +14,8 @@
 | 问题行数 | 错误点                                      | 正确写法                                      | 错误原因    |
 |------|------------------------------------------|-------------------------------------------|---------|
 | 23   | for (int adjacencyNode : node.neighbors) | for (Node adjacencyNode : node.neighbors) | 类型写错。大意 |
+| 24   | dfs(adjacencyNode)                       | dfs(adjacencyNode, map)                   | 大意      |
+| 25   | newNode.neighbors.add()                  | newNode.neighbors.add(newAdjacencyNode)   | 大意      |
 
 ```java
 class Solution {

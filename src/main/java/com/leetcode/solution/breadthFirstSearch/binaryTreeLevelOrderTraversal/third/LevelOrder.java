@@ -1,26 +1,15 @@
-## 二叉树的层序遍历
+package com.leetcode.solution.breadthFirstSearch.binaryTreeLevelOrderTraversal.third;
 
-<https://leetcode.cn/problems/binary-tree-level-order-traversal/>
+import com.leetcode.solution.breadthFirstSearch.TreeNode;
+import com.leetcode.solution.breadthFirstSearch.binaryTreeLevelOrderTraversal.LevelOrderTemplate;
 
-### 思路
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-BFS => 利用队列
-
-1. 如何分层 => 利用 for loop 遍历 queue.size()，一层一层遍历
-
-#### 优化
-
-1. 单一解大小固定，就是 queue.size()
-2. queue 添加节点使用 **offer**
-
-### 总结
-
-| 问题行数 | 错误点                     | 正确写法                     | 错误原因 |
-|------|-------------------------|--------------------------|------|
-| 16   | while (queue.isEmpty()) | while (!queue.isEmpty()) | 大意   |
-
-```java
-class Solution {
+public class LevelOrder extends LevelOrderTemplate {
+    @Override
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
 
@@ -56,4 +45,3 @@ class Solution {
         return result;
     }
 }
-```

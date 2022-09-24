@@ -1,22 +1,12 @@
-## 岛屿的最大面积
+package com.leetcode.solution.generalQuestionsDFS.maxAreaOfIsland.third;
 
-<https://leetcode.cn/problems/max-area-of-island/>
+import com.leetcode.solution.generalQuestionsDFS.maxAreaOfIsland.MaxAreaOfIslandTemplate;
 
-### 思路
-
-二维矩阵 DFS => 求每个连通分量的面积 => 找到最大的
-
-### 思路
-
-| 问题行数 | 错误点             | 正确写法                                               | 错误原因   |
-|------|-----------------|----------------------------------------------------|--------|
-| 27   | return maxArea; | return maxArea == Integer.MIN_VALUE ? 0 : maxArea; | 有可能全是0 |
-
-```java
-class Solution {
+public class MaxAreaOfIsland extends MaxAreaOfIslandTemplate {
     private final int[] dx = {-1, 0, 1, 0};
     private final int[] dy = {0, -1, 0, 1};
 
+    @Override
     public int maxAreaOfIsland(int[][] grid) {
         // Ideas: get number of 1 in every connected component of the adjacency matrix
         // check input
@@ -64,4 +54,3 @@ class Solution {
         return x >= 0 && x < grid.length && y >= 0 && y < grid[0].length;
     }
 }
-```
