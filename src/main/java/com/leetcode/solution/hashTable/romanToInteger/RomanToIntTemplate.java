@@ -45,4 +45,11 @@ package com.leetcode.solution.hashTable.romanToInteger;
  */
 abstract public class RomanToIntTemplate {
     abstract public int romanToInt(String s);
+//        map.put('I', 1);
+//        map.put('V', 5);
+//        map.put('X', 10);
+//        map.put('L', 50);
+//        map.put('C', 100);
+//        map.put('D', 500);
+//        map.put('M', 1000);
 }

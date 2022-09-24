@@ -1,21 +1,10 @@
-## 数组中的逆序对
+package com.leetcode.solution.sort.shuZuZhongDeNiXuDuiLcof.second;
 
-<https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/>
 
-### 思路
+import com.leetcode.solution.sort.shuZuZhongDeNiXuDuiLcof.ReversePairsTemplate;
 
-1. 归并排序中 nums[left] > nums[right] 时 leftLength - left 的个数就是当前 left 位置的逆序对总数
-2. 注意：如果使用 temp => 个数就是下标做减法，就没有 length 了 => ` result += mid + 1 - left `
-
-### 总结
-
-| 问题行数    | 错误点                                                     | 正确写法                                                                    | 错误原因                             |
-|---------|---------------------------------------------------------|-------------------------------------------------------------------------|----------------------------------|
-| 22      | return mergeTwoSortedArray(nums, start, end, mid, temp) | return mergeTwoSortedArray(nums, start, end, mid, temp) + left + right; | combine 错误。思路问题                  |
-| 48 - 50 | -                                                       | -                                                                       | 没有将 temp copy 到 nums。归并排序模板默写不熟练 |
-
-```java
-class Solution {
+public class ReversePairs extends ReversePairsTemplate {
+    @Override
     public int reversePairs(int[] nums) {
         // Ideas: MergeSort => 合并的时候前一个值大于后一个值，那么该值后面的都大于
         // O(n * logn) + O(n)
@@ -69,4 +58,3 @@ class Solution {
         return result;
     }
 }
-```

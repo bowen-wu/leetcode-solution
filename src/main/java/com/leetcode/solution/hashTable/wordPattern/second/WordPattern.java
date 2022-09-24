@@ -1,25 +1,12 @@
-## 单词规律
+package com.leetcode.solution.hashTable.wordPattern.second;
 
-<https://leetcode.cn/problems/word-pattern/>
+import com.leetcode.solution.hashTable.wordPattern.WordPatternTemplate;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-1. map => pattern char -> word
-2. 遍历 pattern
-3. s 不能有剩余
-
-#### 优化
-
-1. 使用数组存储 s 的 word
-
-### 总结
-
-| 问题行数    | 错误点 | 正确写法 | 错误原因                                           |
-|---------|-----|------|------------------------------------------------|
-| 22 - 24 | -   | -    | 需要判断该值是否已经在 map 中，case：abba -> dog dog dog dog |
-
-```java
-class Solution {
+public class WordPattern extends WordPatternTemplate {
+    @Override
     public boolean wordPattern(String pattern, String s) {
         // Ideas: Hash table
         // check input
@@ -50,4 +37,3 @@ class Solution {
         return true;
     }
 }
-```
