@@ -1,22 +1,5 @@
-## 设计哈希映射
+package com.leetcode.solution.hashTable.designHashMap.second;
 
-<https://leetcode.cn/problems/design-hashmap/>
-
-### 思路
-
-1. 开散列 => 数组 + 链表
-
-### 总结
-
-| 问题行数 | 错误点                                     | 正确写法                                    | 错误原因                                |
-|------|-----------------------------------------|-----------------------------------------|-------------------------------------|
-| 45   | table[hashcode] = new Node(key, value); | table[hashcode] = new Node(value, key); | 先 value 后 key。大失误                   |
-| 38   | if (size * loadFactor > capacity)       | if (size > capacity * loadFactor)       | 想法错误。                               |
-| 10   | -                                       | this.key = key                          | 初始化 Node 的时候没有写 this.key = key。重大失误 |
-| 66   | node.next = new Node(key, value)        | node.next = new Node(value, key)        | key value 写反了。重大失误                  |
-| 108  | for (int i = 0; i < size; i++)          | for (int i = 0; i < table.length; i++)  | 遍历 table。边界问题                       |
-
-```java
 class MyHashMap {
     // Ideas: 数组 + 链表实现哈希表
     static class Node {
@@ -148,4 +131,3 @@ class MyHashMap {
         return key % capacity;
     }
 }
-```
