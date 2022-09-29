@@ -1,18 +1,12 @@
-## 同构字符串
+package com.leetcode.solution.hashTable.isomorphicStrings.third;
 
-<https://leetcode.cn/problems/isomorphic-strings/>
+import com.leetcode.solution.hashTable.isomorphicStrings.IsIsomorphicTemplate;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-1. map => s -> t
-2. map 不含有 key，但是含有 value => return false
-
-### 总结
-
-1. 不一定 str 都是字母，不能使用数组代替 Map
-
-```java
-class Solution {
+public class IsIsomorphic extends IsIsomorphicTemplate {
+    @Override
     public boolean isIsomorphic(String s, String t) {
         // check input
         if (s == null || s.length() == 0 || t == null || t.length() == 0 || s.length() != t.length()) {
@@ -38,4 +32,3 @@ class Solution {
         return true;
     }
 }
-```

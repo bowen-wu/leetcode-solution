@@ -1,19 +1,12 @@
-## 两数之和
+package com.leetcode.solution.hashTable.twoSum.third;
 
-<https://leetcode.cn/problems/two-sum/>
+import com.leetcode.solution.hashTable.twoSum.TwoSumTemplate;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-1. 遍历数组 => map => value -> index
-
-### 总结
-
-| 问题行数 | 错误点                                    | 正确写法                                            | 错误原因 |
-|------|----------------------------------------|-------------------------------------------------|------|
-| 12   | return new int[]{map.get(nums[i]), i}; | return new int[]{map.get(target - nums[i]), i}; | 大意   |
-
-```java
-class Solution {
+public class TwoSum extends TwoSumTemplate {
+    @Override
     public int[] twoSum(int[] nums, int target) {
         // check input
         if (nums == null || nums.length == 0) {
@@ -32,4 +25,3 @@ class Solution {
         return new int[0];
     }
 }
-```
