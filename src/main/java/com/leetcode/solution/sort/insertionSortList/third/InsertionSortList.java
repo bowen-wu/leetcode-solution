@@ -1,20 +1,10 @@
-## 对链表进行插入排序
+package com.leetcode.solution.sort.insertionSortList.third;
 
-<https://leetcode.cn/problems/insertion-sort-list/>
+import com.leetcode.solution.linkedList.ListNode;
+import com.leetcode.solution.sort.insertionSortList.InsertionSortListTemplate;
 
-### 思路
-
-1. DummyNode
-2. 插入排序，逐步比较 => 找到第一个比它大的，插在前面即可，如果没有，则放在后面
-
-### 总结
-
-| 问题行数 | 错误点 | 正确写法             | 错误原因                       |
-|------|-----|------------------|----------------------------|
-| 22   | -   | node = dummyNode | node 没有 reset dummyNode。思路 |
-
-```java
-class Solution {
+public class InsertionSortList extends InsertionSortListTemplate {
+    @Override
     public ListNode insertionSortList(ListNode head) {
         // check input
         if (head == null) {
@@ -41,4 +31,3 @@ class Solution {
         return dummyNode.next;
     }
 }
-```

@@ -13,6 +13,7 @@
 |---------|---------------------------------------------------------|-------------------------------------------------------------------------|----------------------------------|
 | 22      | return mergeTwoSortedArray(nums, start, end, mid, temp) | return mergeTwoSortedArray(nums, start, end, mid, temp) + left + right; | combine 错误。思路问题                  |
 | 48 - 50 | -                                                       | -                                                                       | 没有将 temp copy 到 nums。归并排序模板默写不熟练 |
+| 33 - 36 | if (nums[first] < nums[second])                         | if (nums[first] > nums[second])                                         | 取错逆序对位置。细节问题                     |
 
 ```java
 class Solution {
