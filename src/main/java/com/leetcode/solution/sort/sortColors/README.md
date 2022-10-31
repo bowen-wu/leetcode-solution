@@ -13,13 +13,14 @@
 
 ### 总结
 
-| 问题行数 | 错误点                               | 正确写法                       | 错误原因                       |
-|------|-----------------------------------|----------------------------|----------------------------|
-| 18   | -                                 | end--                      | 需要移动 end 指针。思路问题           |
-| 11   | i < end                           | i <= end                   | i 需要移动到 end。边界问题           |
-| 18   | end--; i++                        | end--                      | 和 end swap 的时候指针不能移动。思路问题  |
-| 21   | -                                 | i++                        | 当 nums[i] == 1 时，移动指针。思路问题 |
-| 11   | for (int i = 0; i < nums.length;) | for (int i = 0; i <= end;) | 边界问题                       |
+| 问题行数 | 错误点                               | 正确写法                                   | 错误原因                       |
+|------|-----------------------------------|----------------------------------------|----------------------------|
+| 18   | -                                 | end--                                  | 需要移动 end 指针。思路问题           |
+| 11   | i < end                           | i <= end                               | i 需要移动到 end。边界问题           |
+| 18   | end--; i++                        | end--                                  | 和 end swap 的时候指针不能移动。思路问题  |
+| 21   | -                                 | i++                                    | 当 nums[i] == 1 时，移动指针。思路问题 |
+| 11   | for (int i = 0; i < nums.length;) | for (int i = 0; i <= end;)             | 边界问题                       |
+| 43   | while (nums[right] == 2)          | while (i <= right && nums[right] == 2) | 边界问题                       |
 
 ```java
 class Solution {
@@ -51,6 +52,33 @@ class Solution {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+    }
+
+    public void sortColors(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+
+        int left = 0;
+        int right = nums.length - 1;
+        int i = 0;
+        while (i <= right) {
+            if (nums[i] == 2) {
+                swap(nums, i, right);
+                while (i <= right && nums[right] == 2) {
+                    right--;
+                }
+            } else if (nums[i] == 0) {
+                if (i != left) {
+                    swap(nums, i, left);
+                }
+
+                i++;
+                left++;
+            } else {
+                i++;
+            }
+        }
     }
 }
 ```

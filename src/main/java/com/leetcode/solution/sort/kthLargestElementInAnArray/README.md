@@ -11,6 +11,7 @@
 | 34   | for (int i = start; i <= end; i++) | for (int i = start; i < end; i++) | i 不需要到 end。模板没记熟 |
 | 44   | swap(nums, i, j + 1);              | swap(nums, end, j + 1);           | 笔误               |
 | 34   | for (int i = start; i <= end; i++) | for (int i = start; i < end; i++) | 模板没记熟            |
+| 13   | return start;                      | return nums[start];               | 边界问题             |
 
 ```java
 class Solution {
