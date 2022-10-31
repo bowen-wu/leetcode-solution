@@ -1,25 +1,9 @@
-## 最长递增子序列的个数
+package com.leetcode.solution.dynamicProgramming.numberOfLongestIncreasingSubsequence.second;
 
-<https://leetcode.cn/problems/number-of-longest-increasing-subsequence/>
+import com.leetcode.solution.dynamicProgramming.numberOfLongestIncreasingSubsequence.FindNumberOfLISTemplate;
 
-### 思路
-
-1. 增加一个 count 数组 => count[i] 表示以 nums[i] 结尾的最长子序列个数
-2. 在 nums[j] < nums[i] 的前提下
-3. dp[i] < dp[j] + 1 => count[i] = count[j] => 第一次记录
-4. dp[i] == dp[j] + 1 => count[i] + count[j] => 更新
-
-### 总结
-
-1. 需要使用 results 记录每个位置的 LIS 个数
-
-| 问题行数 | 错误点         | 正确写法                  | 错误原因                |
-|------|-------------|-----------------------|---------------------|
-| 35   | result = 1; | result = results[i];  | 应该等于 i 处的 result。思路 |
-| 37   | result++    | result += results[i]; | 应该加 i 处的 result 。思路 |
-
-```java
-class Solution {
+public class FindNumberOfLIS extends FindNumberOfLISTemplate {
+    @Override
     public int findNumberOfLIS(int[] nums) {
         // state => f(n) 表示以 nums[n] 结尾的 LIS
         // status function => f(n) = Math.max(f(0), f(1)... f(n - 1)) + 1
@@ -42,6 +26,7 @@ class Solution {
                     } else if (memo[j] + 1 == currentLIS) {
                         currentResult += results[j];
                     }
+
                 }
             }
             memo[i] = currentLIS;
@@ -61,4 +46,3 @@ class Solution {
         return result;
     }
 }
-```

@@ -1,25 +1,9 @@
-## 第 N 个泰波那契数
+package com.leetcode.solution.dynamicProgramming.nthTribonacciNumber.second;
 
-<https://leetcode.cn/problems/n-th-tribonacci-number/>
+import com.leetcode.solution.dynamicProgramming.nthTribonacciNumber.TribonacciTemplate;
 
-### 思路
-
-1. State => f(n) 表示第 n 个泰波那契数
-2. Function => f(n) = f(n - 1) + f(n - 2) + f(n - 3)
-3. Condition =>
-    1. f(0) = 0;
-    2. f(1) = 1
-    3. f(2) = 1;
-4. Solution => 求 f(n)
-
-### 总结
-
-| 问题行数 | 错误点      | 正确写法     | 错误原因 |
-|------|----------|----------|------|
-| 11   | return 0 | return 1 | 细节   |
-
-```java
-class Solution {
+public class Tribonacci extends TribonacciTemplate {
+    @Override
     public int tribonacci(int n) {
         // state => f(n) 表示第 N 个泰波那契数
         // status function => f(n) = f(n - 1) + f(n - 2) + f(n - 3)
@@ -29,7 +13,7 @@ class Solution {
             return n;
         }
         if (n == 2) {
-            return 1;
+            return 0;
         }
 
         int[] memo = new int[3];
@@ -41,4 +25,3 @@ class Solution {
         return memo[n % 3];
     }
 }
-```
