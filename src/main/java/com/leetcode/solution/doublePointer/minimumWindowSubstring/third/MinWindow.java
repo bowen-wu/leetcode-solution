@@ -1,30 +1,12 @@
-## 最小覆盖子串
+package com.leetcode.solution.doublePointer.minimumWindowSubstring.third;
 
-<https://leetcode.cn/problems/minimum-window-substring/>
+import com.leetcode.solution.doublePointer.minimumWindowSubstring.MinWindowTemplate;
 
-### 思路
+import java.util.HashMap;
+import java.util.Map;
 
-- sidling window
-- map => 统计 t 中字符个数
-- 如何扩展 => 没找全时 => 字符 + 次数
-- 如何收窄 => 如果 i 位置对应的字符在 map 中，那么 ++
-- 如何更新结果 =>
-    1. 全部找到
-    2. 当前长度比 minLength 短
-
-#### 优化
-
-1. 使用 128 的数组优化 map
-
-### 总结
-
-| 问题行数 | 错误点                             | 正确写法                        | 错误原因              |
-|------|---------------------------------|-----------------------------|-------------------|
-| 32   | -                               | resultLen = j - i;          | 没有更新 resultLen。大意 |
-| 33   | result = s.substring(i, j + 1); | result = s.substring(i, j); | 边界问题              |
-
-```java
-class Solution {
+public class MinWindow extends MinWindowTemplate {
+    @Override
     public String minWindow(String s, String t) {
         // check input
         if (s == null || s.length() == 0 || t == null || t.length() > s.length()) {
@@ -123,4 +105,3 @@ class Solution {
         return true;
     }
 }
-```

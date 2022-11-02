@@ -1,21 +1,9 @@
-## 长度最小的子数组
+package com.leetcode.solution.doublePointer.minimumSizeSubarraySum.third;
 
-<https://leetcode.cn/problems/minimum-size-subarray-sum/>
+import com.leetcode.solution.doublePointer.minimumSizeSubarraySum.MinSubArrayLenTemplate;
 
-### 思路
-
-1. sidling window
-2. 如何扩展 => 和小于 target
-3. 如何收窄 => 移除当前值
-
-### 总结
-
-| 问题行数 | 错误点             | 正确写法                            | 错误原因              |
-|------|-----------------|---------------------------------|-------------------|
-| 7    | int result = 0; | int result = Integer.MAX_VALUE; | result 初始值问题。边界问题 |
-
-```java
-class Solution {
+public class MinSubArrayLen extends MinSubArrayLenTemplate {
+    @Override
     public int minSubArrayLen(int target, int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -39,4 +27,3 @@ class Solution {
         return result == Integer.MAX_VALUE ? 0 : result;
     }
 }
-```

@@ -1,0 +1,32 @@
+package com.leetcode.solution.doublePointer.threeSumSmaller.third;
+
+import com.leetcode.solution.doublePointer.threeSumSmaller.ThreeSumSmallerTemplate;
+
+import java.util.Arrays;
+
+public class ThreeSumSmaller extends ThreeSumSmallerTemplate {
+    @Override
+    public int threeSumSmaller(int[] nums, int target) {
+        // check input
+        if (nums == null || nums.length < 3) {
+            return 0;
+        }
+
+        Arrays.sort(nums);
+        int result = 0;
+        for (int i = 0; i < nums.length - 2; i++) {
+            int start = i + 1;
+            int end = nums.length - 1;
+            while (start < end) {
+                int sum = nums[i] + nums[start] + nums[end];
+                if (sum < target) {
+                    result += end - start;
+                    start++;
+                } else {
+                    end--;
+                }
+            }
+        }
+        return result;
+    }
+}

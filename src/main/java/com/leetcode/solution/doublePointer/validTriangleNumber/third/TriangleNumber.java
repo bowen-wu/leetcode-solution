@@ -1,20 +1,11 @@
-## 有效三角形的个数
+package com.leetcode.solution.doublePointer.validTriangleNumber.third;
 
-<https://leetcode.cn/problems/valid-triangle-number/>
+import com.leetcode.solution.doublePointer.validTriangleNumber.TriangleNumberTemplate;
 
-### 思路
+import java.util.Arrays;
 
-1. a + b > c => a + b == 两数之和
-2. target 相当于第三边 => Two-Sum 大于 target 的个数 => target 从后往前取
-
-### 总结
-
-| 问题行数 | 错误点                                | 正确写法                               | 错误原因 |
-|------|------------------------------------|------------------------------------|------|
-| 11   | for (int i = len - 1; i >= 2; i++) | for (int i = len - 1; i >= 2; i--) | 大意   |
-
-```java
-class Solution {
+public class TriangleNumber extends TriangleNumberTemplate {
+    @Override
     public int triangleNumber(int[] nums) {
         // a + b > c
         if (nums == null || nums.length < 3) {
@@ -39,4 +30,3 @@ class Solution {
         return result;
     }
 }
-```

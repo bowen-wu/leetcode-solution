@@ -1,17 +1,9 @@
-## 剑指 Offer 21. 调整数组顺序使奇数位于偶数前面
+package com.leetcode.solution.doublePointer.groupByParity.second;
 
-<https://leetcode.cn/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/>
+import com.leetcode.solution.doublePointer.groupByParity.ExchangeTemplate;
 
-### 思路
-
-### 总结
-
-| 问题行数 | 错误点         | 正确写法      | 错误原因     |
-|------|-------------|-----------|----------|
-| 5    | return null | return [] | [] -> [] |
-
-```java
-class Solution {
+public class Exchange extends ExchangeTemplate {
+    @Override
     public int[] exchange(int[] nums) {
         // Ideas: three pointer
         if (nums == null || nums.length == 0) {
@@ -32,4 +24,3 @@ class Solution {
         return result;
     }
 }
-```

@@ -1,20 +1,11 @@
-## 摆动排序 II
+package com.leetcode.solution.doublePointer.wiggleSortII.second;
 
-<https://leetcode.cn/problems/wiggle-sort-ii/>
+import com.leetcode.solution.doublePointer.wiggleSortII.WiggleSortTemplate;
 
-### 思路
+import java.util.Arrays;
 
-1. 排序
-2. 分成左右两个部分
-3. 两个指针从后向前遍历
-4. 第一部分从 middle 处遍历，使得如果是奇数，则剩余最小元素
-
-### 总结
-
-1. 思路 => 两个指针从后向前遍历即可
-
-```java
-class Solution {
+public class WiggleSort extends WiggleSortTemplate {
+    @Override
     public void wiggleSort(int[] nums) {
         // 时间复杂度: O(nlogn)
         // 空间复杂度: O(n)
@@ -46,4 +37,3 @@ class Solution {
         }
     }
 }
-```

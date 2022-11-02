@@ -1,21 +1,11 @@
-## 最接近的三数之和
+package com.leetcode.solution.doublePointer.threeSumClosest.third;
 
-<https://leetcode.cn/problems/3sum-closest/>
+import com.leetcode.solution.doublePointer.threeSumClosest.ThreeSumClosestTemplate;
 
-### 思路
+import java.util.Arrays;
 
-#### 优化
-
-1. sum == target => return target
-
-### 总结
-
-| 问题行数 | 错误点 | 正确写法               | 错误原因 |
-|------|-----|--------------------|------|
-| 8    | -   | Arrays.sort(nums); | 没有排序 |
-
-```java
-class Solution {
+public class ThreeSumClosest extends ThreeSumClosestTemplate {
+    @Override
     public int threeSumClosest(int[] nums, int target) {
         // check input
         if (nums == null || nums.length < 3) {
@@ -26,6 +16,9 @@ class Solution {
         int len = nums.length;
         int result = nums[0] + nums[1] + nums[len - 1];
         for (int i = 0; i < len - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             int start = i + 1;
             int end = len - 1;
             while (start < end) {
@@ -51,4 +44,3 @@ class Solution {
         return result;
     }
 }
-```
