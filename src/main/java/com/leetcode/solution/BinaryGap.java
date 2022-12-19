@@ -12,6 +12,7 @@ public class BinaryGap {
     // 时间复杂度：O(log n)
     // 空间复杂度：O(1)
     public int binaryGap(int n) {
+        Integer
         int result = 0;
         int prev = -1;
         int index = 0;

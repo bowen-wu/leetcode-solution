@@ -72,7 +72,7 @@ public class BFSInGraph {
         // construct adjacencyList => Map<Node, List<Node>> => node -> adjacency node
         Map<Integer, List<Integer>> adjacencyList = new HashMap<>();
         for (int i = 0; i < nodeNum; i++) {
-            adjacencyList.add(i, new ArrayList<>());
+            adjacencyList.put(i, new ArrayList<>());
         }
         for (int i = 0; i < edges.length; i++) {
             int u = edges[i][0];

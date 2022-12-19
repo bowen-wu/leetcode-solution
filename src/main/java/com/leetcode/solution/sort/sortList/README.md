@@ -20,6 +20,7 @@
 | 27      | ListNode high = sortList(head);    | head.next = sortList(head.next);        | high 部分从 head.next 开始计算。思路 + 细节              |
 | 32 - 35 | -                                  | -                                       | 获取 low 的最后一个元素，必须得到 low 之后才能拿到最后一个元素。思路 + 细节 |
 | 19      | -                                  | prev.next = next;                       | 将前一个和后一个连接起来。细节                              |
+| 31 - 34 | -                                  | -                                       | 获取 low 的最后一个元素，之后连接。细节                       |
 
 ```java
 class Solution {
