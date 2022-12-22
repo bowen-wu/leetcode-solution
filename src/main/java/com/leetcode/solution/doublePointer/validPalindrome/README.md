@@ -11,6 +11,7 @@
 | 32   | ch1 = (char) ch1 + 'a' - 'A'; | ch1 = (char) (ch1 + 'a' - 'A'); | 强制类型转换         |
 | 9    | int end = s.length();         | int end = s.length() - 1;       | end 初始值错误。边界问题 |
 | 31   | if (ch1 >= 'A' && ch1 >= 'Z') | if (ch1 >= 'A' && ch1 <= 'Z')   | 大意             |
+| 9    | int end = s.length();         | int end = s.length() - 1;       | end 初始值错误。边界问题 |
 
 ```java
 class Solution {
