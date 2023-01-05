@@ -1,20 +1,9 @@
-## 买卖股票的最佳时机 II
+package com.leetcode.solution.dynamicProgramming.singleSequence.bestTimeToBuyAndSellStockII.second;
 
-<https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/>
+import com.leetcode.solution.dynamicProgramming.singleSequence.bestTimeToBuyAndSellStockII.MaxProfitTemplate;
 
-### 思路
-
-1. 贪心 => 获取所有上升段的差值
-2. DP =>
-
-### 总结
-
-1. 思路
-    - 贪心，获取所有上升段的差值
-    - DP
-
-```java
-class Solution {
+public class MaxProfit extends MaxProfitTemplate {
+    @Override
     public int maxProfitGreedy(int[] prices) {
         // 贪心
         if (prices == null || prices.length == 0) {
@@ -32,6 +21,7 @@ class Solution {
         return result;
     }
 
+    @Override
     public int maxProfitDp(int[] prices) {
         // DP
         if (prices == null || prices.length == 0) {
@@ -51,6 +41,3 @@ class Solution {
         return Math.max(dp[(len - 1) % 2][0], dp[(len - 1) % 2][1]);
     }
 }
-```
-
-

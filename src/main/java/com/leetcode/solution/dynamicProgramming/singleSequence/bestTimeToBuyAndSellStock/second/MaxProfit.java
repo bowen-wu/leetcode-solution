@@ -1,18 +1,9 @@
-## 买卖股票的最佳时机
+package com.leetcode.solution.dynamicProgramming.singleSequence.bestTimeToBuyAndSellStock.second;
 
-<https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/>
+import com.leetcode.solution.dynamicProgramming.singleSequence.bestTimeToBuyAndSellStock.MaxProfitTemplate;
 
-### 思路
-
-1. 贪心
-2. 遍历的时候更新最小值和利润
-
-### 总结
-
-1. 思路，遍历的时候更新最小值和利润
-
-```java
-class Solution {
+public class MaxProfit extends MaxProfitTemplate {
+    @Override
     public int maxProfit(int[] prices) {
         // 没有思路，不会贪心
         // 贪心 => 找到最小值
@@ -37,5 +28,3 @@ class Solution {
         return result;
     }
 }
-```
-

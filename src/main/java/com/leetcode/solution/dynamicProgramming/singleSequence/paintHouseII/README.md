@@ -13,4 +13,4 @@
 #### 优化
 
 1. 时间复杂度 => O(n * k)
-2. 记录一个 minCost 和 secondMinCost
+2. **记录一个 minCost 和 secondMinCost**

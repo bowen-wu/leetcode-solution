@@ -1,5 +1,7 @@
 package com.leetcode.solution.dynamicProgramming.singleSequence.houseRobber.second;
 
+import com.leetcode.solution.dynamicProgramming.singleSequence.houseRobber.RobTemplate;
+
 public class Rob extends RobTemplate {
     @Override
     public int rob(int[] nums) {
