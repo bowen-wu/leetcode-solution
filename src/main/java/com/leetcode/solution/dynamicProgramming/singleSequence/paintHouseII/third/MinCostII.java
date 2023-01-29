@@ -1,29 +1,9 @@
-## 粉刷房子 II
+package com.leetcode.solution.dynamicProgramming.singleSequence.paintHouseII.third;
 
-<https://leetcode.cn/problems/paint-house-ii/>
+import com.leetcode.solution.dynamicProgramming.singleSequence.paintHouseII.MinCostIITemplate;
 
-### 思路
-
-1. state => dp[i][k] 使用k颜色粉刷第i个房子的最小花费
-2. status function => dp[i][k] = min(dp[i - 1][j])(j != k) + cost[i][k]
-3. condition => dp[0][k] = cost[0][k] k == 0 -> k
-4. solution => min(dp[costs.length - 1][k])
-5. 时间复杂度 => O(n * k * k)
-
-#### 优化
-
-1. 时间复杂度 => O(n * k)
-2. **记录一个 minCost 和 secondMinCost**
-
-### 总结
-
-| 问题行数 | 错误点                     | 正确写法                       | 错误原因 |
-|------|-------------------------|----------------------------|------|
-| 9    | int[][] dp = int[2][k]; | int[][] dp = new int[2][k] | 大意   |
-
-```java
-class Solution {
-    public int maxEnvelopes(int[][] envelopes) {
+public class MinCostII extends MinCostIITemplate {
+    public int minCostII(int[][] costs) {
         if (costs == null || costs.length == 0 || costs[0] == null || costs[0].length == 0) {
             return 0;
         }
@@ -62,6 +42,9 @@ class Solution {
 
         return min;
     }
-}
-```
 
+    @Override
+    public int minCostIIFromI(int[][] costs) {
+        return 0;
+    }
+}
