@@ -1,23 +1,11 @@
-## 三角形最小路径和
+package com.leetcode.solution.dynamicProgramming.matrix.triangle.second;
 
-<https://leetcode.cn/problems/triangle/>
+import com.leetcode.solution.dynamicProgramming.matrix.triangle.MinimumTotalTemplate;
 
-### 思路
+import java.util.List;
 
-1. 制表法
-2. state => dp[i][j] 表示顶点到 (i, j) 位置的最小路径和
-3. status function => dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j] => check i - 1 & j - 1
-4. condition => dp[0][0] = triangle[0][0]
-5. solution => Math.min(dp[len])
-
-### 总结
-
-| 问题行数 | 错误点                                                     | 正确写法           | 错误原因 |
-|------|---------------------------------------------------------|----------------|------|
-| 31   | return result == Integer.MAX_VALUE ? dp[0][0] : result; | return result; | 大意   |
-
-```java
-class Solution {
+public class MinimumTotal extends MinimumTotalTemplate {
+    @Override
     public int minimumTotal(List<List<Integer>> triangle) {
         if (triangle == null || triangle.size() == 0 || triangle.get(0) == null || triangle.get(0).size() == 0) {
             return 0;
@@ -50,10 +38,3 @@ class Solution {
         return result == Integer.MAX_VALUE ? dp[0][0] : result;
     }
 }
-```
-
-
-
-
-
-
