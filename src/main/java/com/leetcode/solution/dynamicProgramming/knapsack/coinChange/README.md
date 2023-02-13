@@ -20,3 +20,35 @@
         3. 11 = dp[6] + 1 * 5
 2. max = amount + 1 => 最小硬币是1
 
+### 总结
+
+1. 空间优化之后变为一维数组
+
+```java
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // 完全背包
+        // state => dp[j] 表示凑成金额j的最少硬币数
+        // status function => dp[j] = Math.min(dp[j - coin] + 1)
+        // condition => dp[0] = 0 
+        // solution => dp[amount]
+        if (coins == null || coins.length == 0 || amount < 0) {
+            return -1;
+        }
+
+        int[] dp = new int[amount + 1];
+
+        for (int j = 1; j <= amount; j++) {
+            dp[j] = amount + 1;
+            for (int coin : coins) {
+                if (j >= coin && dp[j - coin] + 1 > 0) {
+                    dp[j] = Math.min(dp[j], dp[j - coin] + 1);
+                }
+            }
+        }
+
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+}
+```
+
