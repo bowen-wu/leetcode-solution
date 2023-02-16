@@ -1,23 +1,10 @@
-## 零钱兑换 II
+package com.leetcode.solution.dynamicProgramming.knapsack.coinChangeII.third;
 
-<https://leetcode.cn/problems/coin-change-ii/>
+import com.leetcode.solution.dynamicProgramming.knapsack.coinChangeII.ChangeTemplate;
 
-### 思路
+import java.util.Arrays;
 
-1. 完全背包问题
-2. state => dp[i] 表示凑成金额i的方案总数
-3. status function => dp[i] = $\sum_0^len$(dp[i - coins[j]])
-4. condition => dp[0] = 1
-5. solution => dp[amount]
-6. 需要先遍历硬币，避免重复
-7. 如果先遍历金额，会重复
-
-### 总结
-
-1. 滚动数组需要初始化数组为0 => ` Arrays.fill(dp[i % 2], 0); `
-
-```java
-class Solution {
+public class Change extends ChangeTemplate {
     public int change(int amount, int[] coins) {
         // 完全背包 -> 一维数组
         // state => dp[i] 表示凑成金额i的硬币组合数
@@ -92,4 +79,3 @@ class Solution {
         return dp[len][amount];
     }
 }
-```

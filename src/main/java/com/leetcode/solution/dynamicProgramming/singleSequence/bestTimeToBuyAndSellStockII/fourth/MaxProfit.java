@@ -3,7 +3,6 @@ package com.leetcode.solution.dynamicProgramming.singleSequence.bestTimeToBuyAnd
 import com.leetcode.solution.dynamicProgramming.singleSequence.bestTimeToBuyAndSellStockII.MaxProfitTemplate;
 
 public class MaxProfit extends MaxProfitTemplate {
-    @Override
     public int maxProfit(int[] prices) {
         // 贪心
         if (prices == null || prices.length == 0) {
@@ -19,5 +18,15 @@ public class MaxProfit extends MaxProfitTemplate {
         }
 
         return result;
+    }
+
+    @Override
+    public int maxProfitGreedy(int[] prices) {
+        return 0;
+    }
+
+    @Override
+    public int maxProfitDp(int[] prices) {
+        return 0;
     }
 }

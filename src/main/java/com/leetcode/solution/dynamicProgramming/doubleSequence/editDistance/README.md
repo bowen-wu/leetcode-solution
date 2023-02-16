@@ -10,3 +10,7 @@
 4. condition => dp[0][0, len2] = [0, len2] dp[0, len1][0] = [0, len1]
 5. solution => dp[len1][len2]
 6. 对于传入字符串是 null 的判断
+
+### 总结
+
+1. 如果不等，应该是3个比较大小

@@ -23,6 +23,7 @@
 ### 总结
 
 1. 空间优化之后变为一维数组
+2. 如果 dp 是二维数组，第一个数组的 length 应该是 len + 1。边界条件
 
 ```java
 class Solution {
