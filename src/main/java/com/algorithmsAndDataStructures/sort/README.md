@@ -346,11 +346,13 @@ public class QuickSort {
 
 求数组 nums 中第 k 小的元素
 
-- 将数组划分为两个(可能为空)子数组，是的前一个子数组中的每个元素都小于或等于 nums[index]，后一个都大于 nums[index]
+- 将数组划分为两个(可能为空)子数组，使得前一个子数组中的每个元素都小于或等于 nums[index]，后一个都大于 nums[index]
 - 检查 nums[index] 是否为第 k 小的元素
     1. index == k => 返回 nums[index]
     2. index > k => 第 k 小的元素落在**低**区
     3. index < k => 第 k 小的元素落在**高**区，并且已经知道有 index 个元素比 nums[index] 小
+
+#### 模板
 
 ```java
 public class QuickSelect {

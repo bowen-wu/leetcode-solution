@@ -32,21 +32,20 @@
 #### Times 33 算法
 
 - 假设任何字符串都是基于33的一个大整数
--
+- case: ` hashcode("abcd") = (ascii(a) * (33 ^ 3) + ascii(b) * (33 ^ 2) + ascii(c) * (33 ^ 1) + ascii(d) * (33 ^ 0)) % hashSize `
 
-case: ` hashcode("abcd") = (ascii(a) * (33 ^ 3) + ascii(b) * (33 ^ 2) + ascii(c) * (33 ^ 1) + ascii(d) * (33 ^ 0)) % hashSize `
+##### 实现
 
-- 给出一个字符串作为 key 和一个哈希表的大小，返回这个字符串的哈希值
-  ```
-  public int hashCode(String key, int hashSize) {
-    long result = 0;
-    char[] chars = key.toCharArray();
-    for (int i = 0; i < chars.length; i++) {
-      result = (result * 33 + ((int) chars[i])) % hashSize;
-    }
-    return (int) result;
+```
+public int hashCode(String key, int hashSize) {
+  long result = 0;
+  char[] chars = key.toCharArray();
+  for (int i = 0; i < chars.length; i++) {
+    result = (result * 33 + ((int) chars[i])) % hashSize;
   }
-  ```
+  return (int) result;
+}
+```
 
 ### 哈希冲突
 
@@ -81,7 +80,9 @@ case: ` hashcode("abcd") = (ascii(a) * (33 ^ 3) + ascii(b) * (33 ^ 2) + ascii(c)
 - 哈希表容量的大小在一开始是不确定的
 - 如果哈希表存储元素太多，将哈希表容量扩大一倍，并将所有的 key 的哈希值重新计算映射到新的 bucket 上
 - 渐进式 rehash => 避免集中 rehash 带来的庞大的计算量和内存操作 => 使用两个 HashTable，在进行操作的时候再 rehash，查询的时候先在新的 HashTable 里面查，之后 fallback 到老的
-  HashTable 里面查 => 将一次的 rehash 均摊多多次的操作中
+  HashTable 里面查 => 将一次的 rehash 均摊到多次的操作中
+
+##### rehashing 实现
 
 ```java
 class Rehashing {
@@ -169,14 +170,3 @@ public class Traversal {
 - Java1.7 扩容时 => 头插法 => 有死循环
 - Java1.8 扩容时 => 尾插法 => 避免死循环
 - Character -> Integer 可以转化成数组存储 => char - 'a' => int -> int
-
-## 履历
-
-| 时间                    | 公司             | 离职原因      | 
-|-----------------------|----------------|-----------|
-| 2018.03 之前            | 浙江龙盛集团有限公司(化工) | -         |
-| 2018.03 - 2018.05     | 北京暄暄科技有限公司     | 能力不及预期    |
-| 2018.05 - 2018.07     | 杭州投着乐网络科技有限公司  | 技术部解散     |
-| 2018.07 - 2019.04     | 杭州中仓仓储有限公司     | 工作量太少     |
-| 2019.04 - 2021.01     | 杭州大树网络技术有限公司   | 技术部解散     |
-| 2021.04 - 至今(2022.10) | 科大讯飞股份有限公司     | 部门战略调整，裁员 |
